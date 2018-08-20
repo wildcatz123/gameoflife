@@ -1,5 +1,8 @@
 package conwaygame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.layout.GridPane;
 
 /**
@@ -45,7 +48,39 @@ public class Grid extends GridPane{
 	 * @param c The Cell that needs its neighbours provided.
 	 */
 	public void provideNeighbours(Cell c) {
-		//TODO: Implement
+		List<Cell> neighbours = new ArrayList<Cell>(8);
+		
+		//Left column
+		if (c.getXPos() > 0) {
+			if (c.getYPos() > 0) {
+				neighbours.add(cells[c.getYPos()-1][c.getXPos()-1]);
+			}
+			neighbours.add(cells[c.getYPos()][c.getXPos()-1]);
+			if (c.getYPos() < height - 1) {
+				neighbours.add(cells[c.getYPos()+1][c.getXPos()-1]);
+			}
+		}
+		
+		//Central column
+		if (c.getYPos() > 0) {
+			neighbours.add(cells[c.getYPos()-1][c.getXPos()]);
+		}
+		if (c.getYPos() < height - 1) {
+			neighbours.add(cells[c.getYPos()+1][c.getXPos()]);
+		}
+		
+		//Right column
+		if (c.getXPos() < width - 1) {
+			if (c.getYPos() > 0) {
+				neighbours.add(cells[c.getYPos()-1][c.getXPos()+1]);
+			}
+			neighbours.add(cells[c.getYPos()][c.getXPos()+1]);
+			if (c.getYPos() < height - 1) {
+				neighbours.add(cells[c.getYPos()+1][c.getXPos()+1]);
+			}
+		}
+		
+		c.setNeighbours(neighbours);
 	}
 
 }
