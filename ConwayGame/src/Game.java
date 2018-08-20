@@ -29,7 +29,7 @@ public class Game extends Application {
 					@Override
 					public void handle(ActionEvent arg0) {
 						//clearButton();
-						clear.setText("Play");
+						clear.setText("Clear");
 					}
 				});
 		
@@ -39,7 +39,7 @@ public class Game extends Application {
 					@Override
 					public void handle(ActionEvent arg0) {
 						//playButton();
-						choose.setText("Play");
+						choose.setText("Choose");
 					}
 				});
 		
@@ -49,7 +49,7 @@ public class Game extends Application {
 					@Override
 					public void handle(ActionEvent arg0) {
 						//playButton();
-						start.setText("Play");
+						start.setText("Start");
 					}
 				});
 		
@@ -59,7 +59,7 @@ public class Game extends Application {
 					@Override
 					public void handle(ActionEvent arg0) {
 						//playButton();
-						stop.setText("Play");
+						stop.setText("Stop");
 					}
 				});
 			
