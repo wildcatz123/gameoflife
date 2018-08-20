@@ -1,3 +1,6 @@
+package conwaygame;
+
+import javafx.scene.layout.GridPane;
 
 /**
  * A Grid object keeps track of a rectangular grid of Cell objects.
@@ -5,7 +8,7 @@
  * @author jonesgare1
  *
  */
-public class Grid {
+public class Grid extends GridPane{
     private int height;
     private int width;
     private Cell[][] cells;

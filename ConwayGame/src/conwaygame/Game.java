@@ -1,3 +1,4 @@
+package conwaygame;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -5,15 +6,22 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class Game extends Application {
-
-
+    private int width = 500; // scene width
+    private int height = 500 + 100;// scene height
+    private Grid grids = new Grid(500,500); 
 	public Game() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
+	/**
+	 * the stage of the game
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
+		
+		// stage > scene > VBox
+		//VBox contains GridPane for display the grid and  HBox to display the control pannel.
 		
 		
 		
