@@ -49,5 +49,23 @@ public class Cell {
 	public void setNeighbours(List<Cell> neighbours) {
 		this.neighbours = neighbours;
 	}
+	
+	/**
+	 * Calculate the correct value of willBeAlive.
+	 * 
+	 * Applies the rules of Conway's Game of Life, based on the isAlive field of neighbours.
+	 */
+	public void prepareForUpdate() {
+		//TODO Implement this.
+	}
+	
+	/**
+	 * Sets the current state to the next state.
+	 * 
+	 * Always run prepareForUpdate() on all Cells before calling this.
+	 */
+	public void update() {
+		isAlive = willBeAlive;
+	}
 
 }
