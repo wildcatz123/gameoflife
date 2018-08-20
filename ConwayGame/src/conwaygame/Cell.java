@@ -1,4 +1,7 @@
+package conwaygame;
 import java.util.List;
+
+import javafx.scene.shape.Rectangle;
 
 /**
  * A Cell object represents a single cell in the grid of Conway's Game of Life.
@@ -7,16 +10,17 @@ import java.util.List;
  * @author jonesgare1
  *
  */
-public class Cell {
-    private int x;// display the x position
-    private int y;// display the y position
+public class Cell extends Rectangle{
+    private int xPos;// display the x position
+    private int yPos;// display the y position
     private boolean isAlive;
     private boolean willBeAlive; //Whether this cell should be alive in the next frame.
     private List<Cell> neighbours;// store the neighbours
     
-	public Cell(int x, int y, boolean isAlive) {
-		this.x = x;
-		this.y = y;
+	public Cell(int width, int height, int x, int y, boolean isAlive) {
+		super(width, height);
+		this.xPos = x;
+		this.yPos = y;
 		this.isAlive = isAlive;
 	}
 
@@ -27,13 +31,13 @@ public class Cell {
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-
-	public int getX() {
-		return x;
+   
+	public int getXPos() {
+		return xPos;
 	}
 
-	public int getY() {
-		return y;
+	public int getYPos() {
+		return yPos;
 	}
 
 	public List<Cell> getNeighbours() {
