@@ -13,24 +13,32 @@ import org.junit.Test;
 
 public class CellTest {
 	private Cell cell = new Cell(10,10,6,8,true);
-//	private Cell neighbour1 = new Cell(10,10,5,8,false);
-//	private Cell neighbour2 = new Cell(10,10,6,7,false);
-//	private Cell neighbour3 = new Cell(10,10,7,7,false);
-//	private Cell neighbour4 = new Cell(10,10,5,8,false);
-//	private Cell neighbour5 = new Cell(10,10,7,8,false);
-//	private Cell neighbour6 = new Cell(10,10,5,9,false);
-//	private Cell neighbour7 = new Cell(10,10,6,9,false);
-//	private Cell neighbour8 = new Cell(10,10,7,9,false);
+	private Cell neighbour1 = new Cell(10,10,5,8,false);
+	private Cell neighbour2 = new Cell(10,10,6,7,false);
+	private Cell neighbour3 = new Cell(10,10,7,7,false);
+	private Cell neighbour4 = new Cell(10,10,5,8,false);
+	private Cell neighbour5 = new Cell(10,10,7,8,false);
+	private Cell neighbour6 = new Cell(10,10,5,9,false);
+	private Cell neighbour7 = new Cell(10,10,6,9,false);
+	private Cell neighbour8 = new Cell(10,10,7,9,false);
+	private List<Cell> neighbours = new ArrayList<Cell>();
+
 
 	@Before
 	public void setup() {
+		neighbours.add(neighbour1);
+		neighbours.add(neighbour2);
+		neighbours.add(neighbour3);
+		neighbours.add(neighbour4);
+		neighbours.add(neighbour5);
+		neighbours.add(neighbour6);
+		neighbours.add(neighbour7);
+		neighbours.add(neighbour8);
 	}
 
 	public List<Cell> createAliveNeighbours(int n) {
-		List<Cell> neighbours = new ArrayList<Cell>();
 		for(int i=0; i<n;i++) {
-			Cell neighbour = new Cell(10,10,1,1,true);
-			neighbours.add(neighbour);
+			neighbours.get(i).setAlive(true);
 		}
 		return neighbours;
 	}
