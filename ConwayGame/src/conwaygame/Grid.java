@@ -37,7 +37,16 @@ public class Grid extends GridPane{
 	 * Should call prepareForUpdate() on each Cell, then call update() on each Cell.
 	 */
 	public void update() {
-		//TODO: Implement
+		for (Cell[] column : cells) {
+			for (Cell c : column) {
+				c.prepareForUpdate();
+			}
+		}
+		for (Cell[] column : cells) {
+			for (Cell c : column) {
+				c.update();
+			}
+		}
 	}
 	
 	/**
