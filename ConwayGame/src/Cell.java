@@ -57,7 +57,20 @@ public class Cell {
 	 * Applies the rules of Conway's Game of Life, based on the isAlive field of neighbours.
 	 */
 	public void prepareForUpdate() {
-		//TODO Implement this.
+
+		if(this.isAlive==true) {
+			if(this.neighbours.size()<2) {
+				this.isAlive = false;
+			}else if(this.neighbours.size() == 2 || this.neighbours.size() == 3){
+				this.isAlive = true;
+			}else {
+				this.isAlive = false;
+			}
+		}else {
+			if(this.neighbours.size() == 3) {
+				this.isAlive = true;
+			}
+		}
 	}
 	
 	/**
