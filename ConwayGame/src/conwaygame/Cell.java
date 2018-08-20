@@ -1,6 +1,7 @@
 package conwaygame;
 import java.util.List;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -21,7 +22,7 @@ public class Cell extends Rectangle{
 		super(width, height);
 		this.xPos = x;
 		this.yPos = y;
-		this.isAlive = isAlive;
+		this.setAlive(isAlive);
 	}
 
 	public boolean isAlive() {
@@ -30,6 +31,11 @@ public class Cell extends Rectangle{
 
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
+		if (isAlive) {
+			setFill(Color.BLACK);
+		} else {
+			setFill(Color.WHITE);
+		}
 	}
    
 	public int getXPos() {
@@ -88,7 +94,7 @@ public class Cell extends Rectangle{
 	 * Always run prepareForUpdate() on all Cells before calling this.
 	 */
 	public void update() {
-		isAlive = willBeAlive;
+		setAlive(willBeAlive);
 	}
 
 }
