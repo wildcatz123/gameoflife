@@ -60,15 +60,15 @@ public class Cell {
 
 		if(this.isAlive==true) {
 			if(this.neighbours.size()<2) {
-				this.isAlive = false;
+				this.willBeAlive = false;
 			}else if(this.neighbours.size() == 2 || this.neighbours.size() == 3){
-				this.isAlive = true;
+				this.willBeAlive = true;
 			}else {
-				this.isAlive = false;
+				this.willBeAlive = false;
 			}
 		}else {
 			if(this.neighbours.size() == 3) {
-				this.isAlive = true;
+				this.willBeAlive = true;
 			}
 		}
 	}
