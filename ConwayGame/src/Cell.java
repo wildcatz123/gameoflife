@@ -3,6 +3,7 @@ import java.util.List;
 /**
  * A Cell object represents a single cell in the grid of Conway's Game of Life.
  * It keeps track of its neighbours and whether it is alive or dead.
+ * 
  * @author jonesgare1
  *
  */
