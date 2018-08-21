@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
@@ -14,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -33,43 +35,35 @@ public class Game extends Application {
 	 * the stage of the game
 	 */
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		//Initialize  the game
-		
-		
-		
-		
-		
-		
-		
-		
 		grids.initialFill();
 
-		
-		
-		
-		
+
+
+
+
 		// basic UI button creation
 		Button clear = new Button("Clear");
 		clear.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		clear.setOnMouseEntered(new ButtonColorHandler(clear, Color.MEDIUMSEAGREEN));
 		clear.setOnMouseExited(new ButtonColorHandler(clear, Color.KHAKI));
-		
+
 		Button play = new Button("Play");
 		play.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		play.setOnMouseEntered(new ButtonColorHandler(play, Color.MEDIUMSEAGREEN));
 		play.setOnMouseExited(new ButtonColorHandler(play, Color.KHAKI));
-		
+
 		Button randomFill = new Button("Random Fill");
 		randomFill.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		randomFill.setOnMouseEntered(new ButtonColorHandler(randomFill, Color.MEDIUMSEAGREEN));
 		randomFill.setOnMouseExited(new ButtonColorHandler(randomFill, Color.KHAKI));
-		
+
 		Button stop = new Button("Stop");
 		stop.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		stop.setOnMouseEntered(new ButtonColorHandler(stop, Color.MEDIUMSEAGREEN));
 		stop.setOnMouseExited(new ButtonColorHandler(stop, Color.KHAKI));
-		
+
 		Button exit = new Button("Exit");
 		exit.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		exit.setOnMouseEntered(new ButtonColorHandler(exit, Color.MEDIUMSEAGREEN));
@@ -80,7 +74,7 @@ public class Game extends Application {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				 clearButton();
+				clearButton();
 				System.out.println("Clear Button press");
 			}
 		});
@@ -144,6 +138,9 @@ public class Game extends Application {
 		Scene scene = new Scene(root, 600, 600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
+		setCellEvent();
+		
 
 	}
 
@@ -151,22 +148,32 @@ public class Game extends Application {
 		launch(args);
 	}
 
-//all the methods
-	
+	//all the methods
+
 	/*clearButton();
 	playButton()
 	randomFillButton();
 	stopButton();*/
-	
-	
+
+
 	public void clearButton(){
-	//grids.getChildren().clear();
+		//grids.getChildren().clear();
 	}
-	
-	
-	
-	
-	
+
+
+	public void setCellEvent(){
+		for(Node cell: grids.getChildren()) {
+			Cell cellText = (Cell) cell;
+			cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			    @Override
+			    public void handle(MouseEvent event) {
+			    	   System.out.println(event.getSource().toString());
+			    	   cellText.setFill(Color.AQUA);
+			    }});
+		}
+	} 
+
+
 	/**
 	 * This ButtonColorHandler's event handler act on every button by changing
 	 * different colors
@@ -189,5 +196,6 @@ public class Game extends Application {
 		}
 
 	}
+
 
 }
