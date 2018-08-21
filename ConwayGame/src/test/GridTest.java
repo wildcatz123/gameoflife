@@ -44,7 +44,7 @@ public class GridTest {
 	public void testTheTopLeftNeighbours() {
 		Cell topLeftCell = new Cell(10,10,0,0,false);
 		gridPane.provideNeighbours(topLeftCell);
-		int neighbourNum = cell.getNeighbours().size();
+		int neighbourNum = topLeftCell.getNeighbours().size();
 		assertEquals(neighbourNum,3);
 	}
 	@Test

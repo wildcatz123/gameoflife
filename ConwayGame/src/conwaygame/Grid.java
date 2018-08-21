@@ -67,8 +67,6 @@ public class Grid extends GridPane{
 						cells[y][x].setAlive(true);
 						cells[y][x].setFill(Color.BLACK);
 						cells[y][x].setStroke(Color.WHITE);	
-
-
 					}
 				}
 			}
