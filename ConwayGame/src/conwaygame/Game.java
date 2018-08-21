@@ -193,44 +193,44 @@ public class Game extends Application {
 
 		// ____________Chooser button Handler______
 
-		menuButton.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent arg0) {
-
-				System.out.println("Choose Button press");
-			}
-		});
-
-		slowSpeed.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				speed = "Slow";
-			}
-		});
-
-		medSpeed.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				speed = "Medium";
-			}
-		});
-
-		fastSpeed.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				speed = "Fast";
-			}
-		});
-
-
-		fastestSpeed.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				speed = "Fastest";
-			}
-		});
-		// _______________Speed Button Hnadler______
+//		menuButton.setOnAction(new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent arg0) {
+//
+//				System.out.println("Choose Button press");
+//			}
+//		});
+//
+//		slowSpeed.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				speed = "Slow";
+//			}
+//		});
+//
+//		medSpeed.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				speed = "Medium";
+//			}
+//		});
+//
+//		fastSpeed.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				speed = "Fast";
+//			}
+//		});
+//
+//
+//		fastestSpeed.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				speed = "Fastest";
+//			}
+//		});
+//		// _______________Speed Button Hnadler______
 
 		menuButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -327,7 +327,7 @@ public class Game extends Application {
 		root.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
 		root.setCenter(grids);
 
-		root.setBottom(hboxHolder);
+		root.setLeft(hboxHolder);
 		Scene scene = new Scene(root, 560, 700);
 		//add some condition to set the speed mode
 		//		updateTimeline();

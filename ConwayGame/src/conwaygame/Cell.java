@@ -1,8 +1,11 @@
 package conwaygame;
+import java.awt.Stroke;
 import java.util.List;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
+import javafx.stage.Stage;
 
 /**
  * A Cell object represents a single cell in the grid of Conway's Game of Life.
@@ -17,6 +20,10 @@ public class Cell extends Rectangle{
     private boolean isAlive;
     private boolean willBeAlive; //Whether this cell should be alive in the next frame.
     private List<Cell> neighbours;// store the neighbours
+    private Color cellStroke = Color.WHITE;//life
+    private Color cellFill = Color.BLACK;//life
+
+
     
 	public Cell(int width, int height, int x, int y, boolean isAlive) {
 		super(width, height);
@@ -33,8 +40,8 @@ public class Cell extends Rectangle{
 		this.isAlive = isAlive;
 		if ((xPos>=5&&xPos<=45)&&(yPos>=5&&yPos<=45)) {
 			if (isAlive) {
-				setFill(Color.BLACK);
-				setStroke(Color.WHITE);
+				setFill(cellFill);
+				setStroke(cellStroke);
 			} else {
 				setFill(Color.WHITE);
 				setStroke(Color.BLACK);
@@ -42,6 +49,24 @@ public class Cell extends Rectangle{
 		}
 	}
    
+	
+
+	public Color getCellStroke() {
+		return cellStroke;
+	}
+
+	public void setCellStroke(Color cellStroke) {
+		this.cellStroke = cellStroke;
+	}
+
+	public Color getCellFill() {
+		return cellFill;
+	}
+
+	public void setCellFill(Color cellFill) {
+		this.cellFill = cellFill;
+	}
+
 	public int getXPos() {
 		return xPos;
 	}
@@ -100,6 +125,7 @@ public class Cell extends Rectangle{
 	public void update() {
 		setAlive(willBeAlive);
 	}
+
 	
 	
 

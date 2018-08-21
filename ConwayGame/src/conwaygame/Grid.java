@@ -160,20 +160,25 @@ public class Grid extends GridPane{
 	}
 
 	public void setAllGreen() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
+		for(int y = 5;y<height/cellHeight-5;y++) {
+			for(int x = 5;x< width/cellWidth-5; x++) {
 				if(cells[y][x].isAlive()==true) {
-					cells[y][x].setFill(Color.CHARTREUSE);	
+					cells[y][x].setCellFill(Color.CHARTREUSE);	
+					cells[y][x].setCellStroke(Color.BLACK);	
+
 				}
 
 			}
 		}
+		
 	}
 	public void setAllBlue() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
+		for(int y = 5;y<height/cellHeight-5;y++) {
+			for(int x = 5;x< width/cellWidth-5; x++) {
 				if(cells[y][x].isAlive()==true) {
-					cells[y][x].setFill(Color.CORNFLOWERBLUE);	
+					cells[y][x].setCellFill(Color.CORNFLOWERBLUE);	
+					cells[y][x].setCellStroke(Color.BLACK);	
+
 				}
 
 			}
@@ -181,10 +186,12 @@ public class Grid extends GridPane{
 	}
 	
 	public void setAllPink() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
+		for(int y = 5;y<height/cellHeight-5;y++) {
+			for(int x = 5;x< width/cellWidth-5; x++) {
 				if(cells[y][x].isAlive()==true) {
-					cells[y][x].setFill(Color.DEEPPINK);	
+					cells[y][x].setCellFill(Color.DEEPPINK);
+					cells[y][x].setCellStroke(Color.BLACK);	
+
 				}
 			}
 		}
@@ -192,10 +199,12 @@ public class Grid extends GridPane{
 	public void pickColor() {
 		ColorPicker colorPick = new ColorPicker();
 		Color color =colorPick.getValue();
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
+		for(int y = 5;y<height/cellHeight-5;y++) {
+			for(int x = 5;x< width/cellWidth-5; x++) {
 				if(cells[y][x].isAlive()==true) {
-					cells[y][x].setFill(color);	
+					cells[y][x].setCellFill(color);	
+					cells[y][x].setCellStroke(Color.BLACK);	
+
 				}
 
 			}
