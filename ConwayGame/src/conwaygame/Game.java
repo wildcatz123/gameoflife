@@ -36,37 +36,39 @@ public class Game extends Application {
 	private int width = 500; // scene width
 	private int height = 500 + 100;// scene height
 	private Timeline timeline;
-	
+	private String speed = "Fast";
+
+
+	private 	KeyFrame keyFrame;
 
 	public Game() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-		public void updateTimeline(String speed) { //speed e.g. "Fastest" //
+
+	public void updateTimeline(String speed) { //speed e.g. "Fastest" //
 		SpeedControl speedControl = new SpeedControl();
-		Duration duration = speedControl.getNewDuration("Fastest");//change to speed
-		
-		EventHandler<ActionEvent>eventHandler = getEventHandler();
-		KeyFrame keyFrame = new KeyFrame(duration,eventHandler);
+		Duration duration = speedControl.getNewDuration(speed);//change to speed
+		//EventHandler<ActionEvent>eventHandler = getEventHandler();
+		keyFrame = new KeyFrame(duration, t -> grids.update());
 		timeline = new Timeline(keyFrame);
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();
-		
-	}
-	
 
-	public EventHandler<ActionEvent> getEventHandler() {
-//		return (t -> grids.update());
-		return new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent arg0) {
-				grids.update();
-			}
-			
-		};
 	}
+
+
+	//	public EventHandler<ActionEvent> getEventHandler() {
+	////		return (t -> grids.update());
+	//		return new EventHandler<ActionEvent>() {
+	//
+	//			@Override
+	//			public void handle(ActionEvent arg0) {
+	//				grids.update();
+	//			}
+	//			
+	//		};
+	//	}
 
 	@Override
 	/**
@@ -76,7 +78,7 @@ public class Game extends Application {
 
 
 		//Initialize  the game
-	
+
 
 		grids.initialFill();
 
@@ -107,10 +109,12 @@ public class Game extends Application {
 		exit.setOnMouseEntered(new ButtonColorHandler(exit, Color.MEDIUMSEAGREEN));
 		exit.setOnMouseExited(new ButtonColorHandler(exit, Color.KHAKI));
 
-		MenuItem shape1 = new MenuItem("Shape 1");
-		MenuItem shape2 = new MenuItem("shape 2");
-		MenuItem shape3 = new MenuItem("Shape 3");
-		MenuButton menuButton = new MenuButton("Shape Choose", null, shape1, shape2, shape3);
+		MenuItem shape1 = new MenuItem("testLine");
+		MenuItem shape2 = new MenuItem("glider");
+		MenuItem shape3 = new MenuItem("spaceShip");
+		MenuItem shape4 = new MenuItem("gliderGun");
+
+		MenuButton menuButton = new MenuButton("Shape Choose", null, shape1, shape2, shape3, shape4);
 		menuButton.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		menuButton.setOnMouseEntered(new MenuButtonColorHandler(menuButton, Color.MEDIUMSEAGREEN));
 		menuButton.setOnMouseExited(new MenuButtonColorHandler(menuButton, Color.KHAKI));
@@ -118,7 +122,9 @@ public class Game extends Application {
 		MenuItem slowSpeed = new MenuItem("Slow");
 		MenuItem medSpeed = new MenuItem("Medium");
 		MenuItem fastSpeed = new MenuItem("Fast");
-		MenuButton speedButton = new MenuButton("Speed", null, slowSpeed, medSpeed, fastSpeed);
+		MenuItem fastestSpeed = new MenuItem("Fastest");
+
+		MenuButton speedButton = new MenuButton("Speed", null, slowSpeed, medSpeed, fastSpeed, fastestSpeed);
 		speedButton.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		speedButton.setOnMouseEntered(new MenuButtonColorHandler(speedButton, Color.MEDIUMSEAGREEN));
 		speedButton.setOnMouseExited(new MenuButtonColorHandler(speedButton, Color.KHAKI));
@@ -181,7 +187,7 @@ public class Game extends Application {
 
 			}
 		});
-		
+
 
 		// ____________Chooser button Handler______
 
@@ -197,24 +203,31 @@ public class Game extends Application {
 		slowSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("Shape 1 selected");
+				speed = "Slow";
 			}
 		});
 
 		medSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("shape2  selected");
+				speed = "Medium";
 			}
 		});
 
 		fastSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("shape 3 selected(God Damn!! stop)");
+				speed = "Fast";
 			}
 		});
 
+
+		fastestSpeed.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				speed = "Fastest";
+			}
+		});
 		// _______________Speed Button Hnadler______
 
 		menuButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -229,24 +242,30 @@ public class Game extends Application {
 		shape1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("speed 1 selected");
+				grids.addShape(Shape.testLine());
 			}
 		});
 
 		shape2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("speed 2  selected");
+				grids.addShape(Shape.glider());
 			}
 		});
 
 		shape3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("speed 3 selected(Oii! Slow down)");
+				grids.addShape(Shape.spaceShip());
 			}
 		});
 
+		shape4.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				grids.addShape(Shape.gliderGun());
+			}
+		});
 		// _______________Colour Button Hnadler______
 
 		colorButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -308,14 +327,14 @@ public class Game extends Application {
 		root.setBottom(hboxHolder);
 		Scene scene = new Scene(root, 560, 700);
 		//add some condition to set the speed mode
-//		updateTimeline();
-		updateTimeline("Fastest");
-		
+		//		updateTimeline();
+		updateTimeline(this.speed);
+
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		
+
 		setCellEvent();
-		
+
 
 	}
 
@@ -347,14 +366,14 @@ public class Game extends Application {
 		for(Node cell: grids.getChildren()) {
 			Cell cellClicked = (Cell) cell;
 			cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			    @Override
-			    public void handle(MouseEvent event) {
-			    	   if(cellClicked.isAlive()) {
-			    		   cellClicked.setAlive(false);
-			    	   }else {
-			    		   cellClicked.setAlive(true);
-			    	   }
-			    }});
+				@Override
+				public void handle(MouseEvent event) {
+					if(cellClicked.isAlive()) {
+						cellClicked.setAlive(false);
+					}else {
+						cellClicked.setAlive(true);
+					}
+				}});
 		}
 	} 
 
