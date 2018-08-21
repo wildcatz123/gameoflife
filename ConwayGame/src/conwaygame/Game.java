@@ -14,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ColorPicker;
+
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -324,6 +326,7 @@ public class Game extends Application {
 		controlPane2.setAlignment(Pos.CENTER);
 		root.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
 		root.setCenter(grids);
+
 		root.setBottom(hboxHolder);
 		Scene scene = new Scene(root, 560, 700);
 		//add some condition to set the speed mode

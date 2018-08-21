@@ -31,6 +31,7 @@ public class Grid extends GridPane{
 		for(int y = 0;y<height/cellHeight;y++) {
 			for(int x = 0;x< width/cellWidth; x++) {
 				Cell c = new Cell(cellWidth,cellHeight,x,y,false);
+
 				this.add(c, x, y);
 				cells[y][x] = c;
 				if((x<5||x>45)||(y<5||y>45)) {
@@ -51,8 +52,9 @@ public class Grid extends GridPane{
 				provideNeighbours(cells[y][x]);
 			}
 		}
-
 	}
+
+
 
 	/**
 	 * Fills the whole grid with cells, a random fix of alive and dead.
@@ -67,7 +69,7 @@ public class Grid extends GridPane{
 						cells[y][x].setAlive(true);
 						cells[y][x].setFill(Color.BLACK);
 						cells[y][x].setStroke(Color.WHITE);	
-		
+
 					}
 				}
 			}
@@ -199,6 +201,5 @@ public class Grid extends GridPane{
 			}
 		}
 	}
-	
-}
 
+				}
