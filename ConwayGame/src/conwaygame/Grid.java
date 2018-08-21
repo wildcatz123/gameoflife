@@ -186,6 +186,37 @@ public class Grid extends GridPane{
 			}
 		}
 	}
+	public void clearGrid() {
+		for(int y = 0;y<height/cellHeight;y++) {
+			for(int x = 0;x< width/cellWidth; x++) {
+//				Cell c = new Cell(10,10,x,y,false);
+//				this.add(c, x, y);
+//				cells[y][x] = c;
+				if((x<5||x>45)||(y<5||y>45)) {
+					
+					cells[y][x].setFill(Color.GREY);
+					cells[y][x].setStroke(Color.GREY);
+					cells[y][x].setAlive(false);
+					
+
+					
+				}
+				if((y>=5&&y<=45)&&(x>=5&&x<=45)) {
+					cells[y][x].setFill(Color.WHITE);
+					cells[y][x].setStroke(Color.BLACK);
+					cells[y][x].setAlive(false);
+
+				}
+			}
+
+		}
+		for(int y = 0;y<height/cellHeight;y++) {
+			for(int x = 0;x< width/cellWidth; x++) {
+				provideNeighbours(cells[y][x]);
+			}
+		}
+	}
+	
 	
 }
 
