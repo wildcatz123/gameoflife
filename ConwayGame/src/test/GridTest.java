@@ -1,4 +1,4 @@
-package test;
+/*package test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,9 +28,9 @@ public class GridTest {
 	
 	
 	@Test
-	/**
+	*//**
 	 * test the provideNeighbours
-	 */
+	 *//*
 	public void testProvideNeighbours() {
 		gridPane.provideNeighbours(cell);
 		int neighbourNum = cell.getNeighbours().size();
@@ -38,9 +38,9 @@ public class GridTest {
 	}
 	
 	@Test
-	/**
+	*//**
 	 * test the top left neighbours
-	 */
+	 *//*
 	public void testTheTopLeftNeighbours() {
 		Cell topLeftCell = new Cell(10,10,0,0,false);
 		gridPane.provideNeighbours(topLeftCell);
@@ -48,10 +48,10 @@ public class GridTest {
 		assertEquals(neighbourNum,3);
 	}
 	@Test
-	/**
+	*//**
 	 * test the initialFill method, when running this method, the grid will fill with dead cell 
 	 * and part of them are always grey, part of them are white.
-	 */
+	 *//*
 	public void testInitialFill() {
 		gridPane.initialFill();
 		boolean isAlive = false;
@@ -63,18 +63,19 @@ public class GridTest {
 		assertEquals(isAlive,false);
 	}
 	@Test
-	/**
+	*//**
 	 * test the randomFill method
-	 */
+	 *//*
 	public void testRandomFill() {
 		
 	}
 	@Test
-	/**
+	*//**
 	 * test the update method
-	 */
+	 *//*
 	public void testUpdate() {
 		
 	}
 	
 }
+*/
