@@ -1,6 +1,7 @@
 package conwaygame;
 
 
+import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -49,14 +50,22 @@ public class Game extends Application {
 
 
 	public void updateTimeline(String speed) { //speed e.g. "Fastest" //
+		boolean wasPlaying;
+		if (timeline == null) {
+			wasPlaying = false;
+		} else {
+			wasPlaying = (timeline.getStatus() == Status.RUNNING);
+			timeline.stop();
+		}
+		
 		SpeedControl speedControl = new SpeedControl();
 		Duration duration = speedControl.getNewDuration(speed);//change to speed
 		//EventHandler<ActionEvent>eventHandler = getEventHandler();
 		keyFrame = new KeyFrame(duration, t -> grids.update());
 		timeline = new Timeline(keyFrame);
 		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.play();
-
+		
+		if (wasPlaying) timeline.play();
 	}
 
 
@@ -155,7 +164,7 @@ public class Game extends Application {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				grids.update();
+				timeline.play();
 				System.out.println("Play Button press");
 			}
 		});
@@ -206,6 +215,7 @@ public class Game extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				speed = "Slow";
+				updateTimeline(speed);
 			}
 		});
 
@@ -213,6 +223,7 @@ public class Game extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				speed = "Medium";
+				updateTimeline(speed);
 			}
 		});
 
@@ -220,6 +231,7 @@ public class Game extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				speed = "Fast";
+				updateTimeline(speed);
 			}
 		});
 
@@ -228,6 +240,7 @@ public class Game extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				speed = "Fastest";
+				updateTimeline(speed);
 			}
 		});
 		// _______________Speed Button Hnadler______
