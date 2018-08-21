@@ -7,7 +7,7 @@ import javafx.util.Duration;
 
 /**
  * @author paultana
- *
+ *Speed control
  */
 public class SpeedControl {
 
