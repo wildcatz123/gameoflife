@@ -59,10 +59,9 @@ public class Grid extends GridPane{
 	 * Should call provideNeighbours with each Cell as an argument after creating all the cells.
 	 */
 	public void randomFill() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
+		for(int y = 5;y<height/cellHeight-5;y++) {
+			for(int x = 5;x< width/cellWidth-5; x++) {
 				int checkFill = (int)(Math.random()*30);
-				if((y>5&&y<55)&&(x>5&&x<55)) {
 					if(checkFill<1) {
 						cells[y][x].setAlive(true);
 						cells[y][x].setFill(Color.BLACK);
@@ -71,7 +70,6 @@ public class Grid extends GridPane{
 				}
 			}
 		}
-	}
 	/**
 	 * Applies the rules of Conway's Game of Life to update the grid.
 	 * 
