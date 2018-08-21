@@ -82,9 +82,9 @@ public class Game extends Application {
 		speedButton.setOnMouseEntered(new MenuButtonColorHandler(speedButton, Color.MEDIUMSEAGREEN));
 		speedButton.setOnMouseExited(new MenuButtonColorHandler(speedButton, Color.KHAKI));
 
-		MenuItem color1 = new MenuItem("color1");
-		MenuItem color2 = new MenuItem("color1");
-		MenuItem color3 = new MenuItem("Color2");
+		MenuItem color1 = new MenuItem("Blue");
+		MenuItem color2 = new MenuItem("Green");
+		MenuItem color3 = new MenuItem("Pink");
 		MenuItem color4 = new MenuItem("Colour Picker");
 		MenuButton colorButton = new MenuButton("Clour", null, color1, color2, color3, color4);
 		colorButton.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
@@ -204,65 +204,49 @@ public class Game extends Application {
 				System.out.println("speed 3 selected(Oii! Slow down)");
 			}
 		});
-		
-		
+
 		// _______________Colour Button Hnadler______
 
-				colorButton.setOnAction(new EventHandler<ActionEvent>() {
+		colorButton.setOnAction(new EventHandler<ActionEvent>() {
 
-					@Override
-					public void handle(ActionEvent arg0) {
+			@Override
+			public void handle(ActionEvent arg0) {
 
-						System.out.println("Colour Button  press");
-					}
-				});
+				System.out.println("Colour Button  press");
+			}
+		});
 
-				color1.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event) {
-						System.out.println("Colour 1  selected");
-					}
-				});
+		color1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				grids.setAllBlue();
+				System.out.println("Colour 1  selected");
+			}
+		});
 
-				color2.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event) {
-						System.out.println("Colour 2  selected");
-					}
-				});
+		color2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				grids.setAllGreen();
+				System.out.println("Colour 2  selected");
+			}
+		});
 
-				color3.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event) {
-						System.out.println("Colour 3 selected(God Damn!! stop)");
-					}
-				});
-				
-				color3.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event) {
-						System.out.println("Colour 4 selected(eww Picky Basterd!)");
-					}
-				});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		color3.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				grids.setAllPink();
+				System.out.println("Colour 3 selected");
+			}
+		});
 
-		// ____________________Colour Button Handler
+		color4.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				grids.pickColor();
+				System.out.println("Colour 4 selected(eww Picky Basterd!)");
+			}
+		});
 
 		// stage > scene > VBox
 		// VBox contains GridPane for display the grid and HBox to display the
@@ -280,7 +264,7 @@ public class Game extends Application {
 		root.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
 		root.setCenter(grids);
 		root.setBottom(hboxHolder);
-		Scene scene = new Scene(root, 550, 700);
+		Scene scene = new Scene(root, 560, 700);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 
