@@ -100,5 +100,7 @@ public class Cell extends Rectangle{
 	public void update() {
 		setAlive(willBeAlive);
 	}
+	
+	
 
 }

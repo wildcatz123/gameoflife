@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -139,6 +140,7 @@ public class Game extends Application {
 		controlPanel.setPadding(new Insets(10));
 		controlPanel.setAlignment(Pos.CENTER);
 		root.setCenter(grids);
+		
 		//grids.setGridLinesVisible(true);
 		root.setBottom(hboxHolder);
 		Scene scene = new Scene(root, 600, 600);
