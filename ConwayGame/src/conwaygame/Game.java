@@ -157,7 +157,7 @@ public class Game extends Application {
 
 
 	public void clearButton(){
-		//grids.getChildren().clear();
+		grids.clearAll();
 	}
 
 

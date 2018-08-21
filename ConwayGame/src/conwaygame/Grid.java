@@ -144,5 +144,14 @@ public class Grid extends GridPane{
 			cells[coord.y][coord.x].setAlive(true);
 		}
 	}
+	
+	public void clearAll() {
+		for(int y = 0;y<height/cellHeight;y++) {
+			for(int x = 0;x< width/cellWidth; x++) {
+				Cell c = cells[y][x];
+				c.setAlive(false);
+			}
+		}
+	}
 
 }
