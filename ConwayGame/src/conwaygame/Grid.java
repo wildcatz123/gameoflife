@@ -11,12 +11,18 @@ import javafx.scene.layout.GridPane;
 public class Grid extends GridPane{
     private int height;
     private int width;
+    private int cellWidth;
+    private int cellHeight;
     private Cell[][] cells;
     
 	public Grid(int height, int width) {
 		this.height = height;
 		this.width = width;
-		cells = new Cell[height][width];
+		setCells(new Cell[height/cellWidth][width/cellHeight]);
+	}
+
+	public void initialFill() {
+		
 	}
 	
 	/**
@@ -47,5 +53,14 @@ public class Grid extends GridPane{
 	public void provideNeighbours(Cell c) {
 		//TODO: Implement
 	}
+
+	public Cell[][] getCells() {
+		return cells;
+	}
+
+	public void setCells(Cell[][] cells) {
+		this.cells = cells;
+	}
+	
 
 }
