@@ -23,13 +23,15 @@ public class Grid extends GridPane{
 	public Grid(int height, int width) {
 		this.height = height;
 		this.width = width;
-		setCells(new Cell[height/cellWidth][width/cellHeight]);
+		setCells(new Cell[height/cellHeight][width/cellWidth]);
+		//setCells(new Cell[width/cellWidth][height/cellHeight]);
 	}
 
 	public void initialFill() {
 		for(int y = 0;y<height/cellHeight;y++) {
 			for(int x = 0;x< width/cellWidth; x++) {
-				Cell c = new Cell(10,10,x,y,false);
+				Cell c = new Cell(cellWidth,cellHeight,x,y,false);
+
 				this.add(c, x, y);
 				cells[y][x] = c;
 				if((x<5||x>45)||(y<5||y>45)) {
@@ -52,29 +54,27 @@ public class Grid extends GridPane{
 		}
 	}
 
+
+
 	/**
 	 * Fills the whole grid with cells, a random fix of alive and dead.
 	 * 
 	 * Should call provideNeighbours with each Cell as an argument after creating all the cells.
 	 */
 	public void randomFill() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
+		for(int y = 5;y<height/cellHeight-5;y++) {
+			for(int x = 5;x< width/cellWidth-5; x++) {
 				int checkFill = (int)(Math.random()*30);
-				if((y>5&&y<55)&&(x>5&&x<55)) {
 					if(checkFill<1) {
 						cells[y][x].setAlive(true);
-						//cells[y][x].setFill(Color.BLACK);
-						ColorPicker c = new ColorPicker();
 						cells[y][x].setFill(Color.BLACK);
 						cells[y][x].setStroke(Color.WHITE);	
-
 
 					}
 				}
 			}
 		}
-	}
+
 	/**
 	 * Applies the rules of Conway's Game of Life to update the grid.
 	 * 
@@ -143,6 +143,21 @@ public class Grid extends GridPane{
 	public void setCells(Cell[][] cells) {
 		this.cells = cells;
 	}
+	
+	public void addShape(Shape s) {
+		for (Shape.Coordinate coord : s.getCoords()) {
+			cells[coord.y][coord.x].setAlive(true);
+		}
+	}
+	
+	public void clearAll() {
+		for(int y = 0;y<height/cellHeight;y++) {
+			for(int x = 0;x< width/cellWidth; x++) {
+				Cell c = cells[y][x];
+				c.setAlive(false);
+			}
+		}
+	}
 
 	public void setAllGreen() {
 		for(int y = 0;y<height/cellHeight-5;y++) {
@@ -186,6 +201,5 @@ public class Grid extends GridPane{
 			}
 		}
 	}
-	
-}
 
+				}

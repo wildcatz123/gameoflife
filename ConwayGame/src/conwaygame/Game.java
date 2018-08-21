@@ -1,34 +1,76 @@
 package conwaygame;
 
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ColorPicker;
+
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Game extends Application {
+
 	/*
 	 * private int width = 500; // scene width private int height = 500 + 100;//
 	 * scene height
-	 */ private Grid grids = new Grid(500, 500);
+	 */ 
+	private Grid grids = new Grid(500, 500);
+	private int width = 500; // scene width
+	private int height = 500 + 100;// scene height
+	private Timeline timeline;
+	private String speed = "Fast";
+
+
+	private 	KeyFrame keyFrame;
 
 	public Game() {
 		// TODO Auto-generated constructor stub
 	}
+
+
+	public void updateTimeline(String speed) { //speed e.g. "Fastest" //
+		SpeedControl speedControl = new SpeedControl();
+		Duration duration = speedControl.getNewDuration(speed);//change to speed
+		//EventHandler<ActionEvent>eventHandler = getEventHandler();
+		keyFrame = new KeyFrame(duration, t -> grids.update());
+		timeline = new Timeline(keyFrame);
+		timeline.setCycleCount(Timeline.INDEFINITE);
+		timeline.play();
+
+	}
+
+
+	//	public EventHandler<ActionEvent> getEventHandler() {
+	////		return (t -> grids.update());
+	//		return new EventHandler<ActionEvent>() {
+	//
+	//			@Override
+	//			public void handle(ActionEvent arg0) {
+	//				grids.update();
+	//			}
+	//			
+	//		};
+	//	}
 
 	@Override
 	/**
@@ -36,9 +78,12 @@ public class Game extends Application {
 	 */
 	public void start(Stage primaryStage) throws Exception {
 
-		// Initialize the game
+
+		//Initialize  the game
+
 
 		grids.initialFill();
+
 
 		// basic UI button creation
 		Button clear = new Button("Clear");
@@ -66,10 +111,12 @@ public class Game extends Application {
 		exit.setOnMouseEntered(new ButtonColorHandler(exit, Color.MEDIUMSEAGREEN));
 		exit.setOnMouseExited(new ButtonColorHandler(exit, Color.KHAKI));
 
-		MenuItem shape1 = new MenuItem("Shape 1");
-		MenuItem shape2 = new MenuItem("shape 2");
-		MenuItem shape3 = new MenuItem("Shape 3");
-		MenuButton menuButton = new MenuButton("Shape Choose", null, shape1, shape2, shape3);
+		MenuItem shape1 = new MenuItem("testLine");
+		MenuItem shape2 = new MenuItem("glider");
+		MenuItem shape3 = new MenuItem("spaceShip");
+		MenuItem shape4 = new MenuItem("gliderGun");
+
+		MenuButton menuButton = new MenuButton("Shape Choose", null, shape1, shape2, shape3, shape4);
 		menuButton.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		menuButton.setOnMouseEntered(new MenuButtonColorHandler(menuButton, Color.MEDIUMSEAGREEN));
 		menuButton.setOnMouseExited(new MenuButtonColorHandler(menuButton, Color.KHAKI));
@@ -77,7 +124,9 @@ public class Game extends Application {
 		MenuItem slowSpeed = new MenuItem("Slow");
 		MenuItem medSpeed = new MenuItem("Medium");
 		MenuItem fastSpeed = new MenuItem("Fast");
-		MenuButton speedButton = new MenuButton("Speed", null, slowSpeed, medSpeed, fastSpeed);
+		MenuItem fastestSpeed = new MenuItem("Fastest");
+
+		MenuButton speedButton = new MenuButton("Speed", null, slowSpeed, medSpeed, fastSpeed, fastestSpeed);
 		speedButton.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		speedButton.setOnMouseEntered(new MenuButtonColorHandler(speedButton, Color.MEDIUMSEAGREEN));
 		speedButton.setOnMouseExited(new MenuButtonColorHandler(speedButton, Color.KHAKI));
@@ -141,6 +190,7 @@ public class Game extends Application {
 			}
 		});
 
+
 		// ____________Chooser button Handler______
 
 		menuButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -155,24 +205,31 @@ public class Game extends Application {
 		slowSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("Shape 1 selected");
+				speed = "Slow";
 			}
 		});
 
 		medSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("shape2  selected");
+				speed = "Medium";
 			}
 		});
 
 		fastSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("shape 3 selected(God Damn!! stop)");
+				speed = "Fast";
 			}
 		});
 
+
+		fastestSpeed.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				speed = "Fastest";
+			}
+		});
 		// _______________Speed Button Hnadler______
 
 		menuButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -187,24 +244,30 @@ public class Game extends Application {
 		shape1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("speed 1 selected");
+				grids.addShape(Shape.testLine());
 			}
 		});
 
 		shape2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("speed 2  selected");
+				grids.addShape(Shape.glider());
 			}
 		});
 
 		shape3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("speed 3 selected(Oii! Slow down)");
+				grids.addShape(Shape.spaceShip());
 			}
 		});
 
+		shape4.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				grids.addShape(Shape.gliderGun());
+			}
+		});
 		// _______________Colour Button Hnadler______
 
 		colorButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -263,10 +326,18 @@ public class Game extends Application {
 		controlPane2.setAlignment(Pos.CENTER);
 		root.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
 		root.setCenter(grids);
+
 		root.setBottom(hboxHolder);
 		Scene scene = new Scene(root, 560, 700);
+		//add some condition to set the speed mode
+		//		updateTimeline();
+		updateTimeline(this.speed);
+
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
+		setCellEvent();
+
 
 	}
 
@@ -274,11 +345,40 @@ public class Game extends Application {
 		launch(args);
 	}
 
+	//all the methods
+
+	/*clearButton();
+	playButton()
+	randomFillButton();
+	stopButton();*/
+
+
+	public void clearButton(){
+		grids.clearAll();
+	}
 	// all the methods
 
-	public void clearButton() {
-		// grids.getChildren().clear();
-	}
+
+
+	/**
+	 * method to set up the each cell's mouse action
+	 * then when click the cell, if the cell is dead, it will be alive. 
+	 * if the cell is alive, it will be dead
+	 */
+	public void setCellEvent(){
+		for(Node cell: grids.getChildren()) {
+			Cell cellClicked = (Cell) cell;
+			cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					if(cellClicked.isAlive()) {
+						cellClicked.setAlive(false);
+					}else {
+						cellClicked.setAlive(true);
+					}
+				}});
+		}
+	} 
 
 	/**
 	 * This ButtonColorHandler's event handler act on every button by changing
@@ -302,6 +402,7 @@ public class Game extends Application {
 		}
 
 	}
+
 
 	/**
 	 * This MenuButtonColorHandler's event handler act on every button by
