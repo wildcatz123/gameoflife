@@ -1,5 +1,8 @@
 package conwaygame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -67,7 +70,16 @@ public void randomFill() {
 	 * Should call prepareForUpdate() on each Cell, then call update() on each Cell.
 	 */
 	public void update() {
-		//TODO: Implement
+		for (Cell[] column : cells) {
+			for (Cell c : column) {
+				c.prepareForUpdate();
+			}
+		}
+		for (Cell[] column : cells) {
+			for (Cell c : column) {
+				c.update();
+			}
+		}
 	}
 	
 	/**
@@ -78,7 +90,39 @@ public void randomFill() {
 	 * @param c The Cell that needs its neighbours provided.
 	 */
 	public void provideNeighbours(Cell c) {
-		//TODO: Implement
+		List<Cell> neighbours = new ArrayList<Cell>(8);
+		
+		//Left column
+		if (c.getXPos() > 0) {
+			if (c.getYPos() > 0) {
+				neighbours.add(cells[c.getYPos()-1][c.getXPos()-1]);
+			}
+			neighbours.add(cells[c.getYPos()][c.getXPos()-1]);
+			if (c.getYPos() < height - 1) {
+				neighbours.add(cells[c.getYPos()+1][c.getXPos()-1]);
+			}
+		}
+		
+		//Central column
+		if (c.getYPos() > 0) {
+			neighbours.add(cells[c.getYPos()-1][c.getXPos()]);
+		}
+		if (c.getYPos() < height - 1) {
+			neighbours.add(cells[c.getYPos()+1][c.getXPos()]);
+		}
+		
+		//Right column
+		if (c.getXPos() < width - 1) {
+			if (c.getYPos() > 0) {
+				neighbours.add(cells[c.getYPos()-1][c.getXPos()+1]);
+			}
+			neighbours.add(cells[c.getYPos()][c.getXPos()+1]);
+			if (c.getYPos() < height - 1) {
+				neighbours.add(cells[c.getYPos()+1][c.getXPos()+1]);
+			}
+		}
+		
+		c.setNeighbours(neighbours);
 	}
 
 	public Cell[][] getCells() {
