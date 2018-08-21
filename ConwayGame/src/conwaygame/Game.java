@@ -184,7 +184,7 @@ public class Game extends Application {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				// stopButton();
+				timeline.pause();
 				System.out.println("Stop Button press");
 			}
 		});
