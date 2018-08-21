@@ -161,13 +161,17 @@ public class Game extends Application {
 	}
 
 
+	/**
+	 * method to set up the each cell's mouse action
+	 * then when click the cell, if the cell is dead, it will be alive. 
+	 * if the cell is alive, it will be dead
+	 */
 	public void setCellEvent(){
 		for(Node cell: grids.getChildren()) {
 			Cell cellClicked = (Cell) cell;
 			cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			    @Override
 			    public void handle(MouseEvent event) {
-			    	   System.out.println(event.getSource().toString());
 			    	   if(cellClicked.isAlive()) {
 			    		   cellClicked.setAlive(false);
 			    	   }else {

@@ -138,7 +138,11 @@ public class Grid extends GridPane{
 	public void setCells(Cell[][] cells) {
 		this.cells = cells;
 	}
-
-
+	
+	public void addShape(Shape s) {
+		for (Shape.Coordinate coord : s.getCoords()) {
+			cells[coord.y][coord.x].setAlive(true);
+		}
+	}
 
 }
