@@ -1,5 +1,11 @@
 package conwaygame;
 
+<<<<<<< HEAD
+=======
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+>>>>>>> refs/remotes/origin/tanaya2
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -21,15 +27,48 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Game extends Application {
+
 	/*
 	 * private int width = 500; // scene width private int height = 500 + 100;//
 	 * scene height
-	 */ private Grid grids = new Grid(500, 500);
+	 */ 
+	private Grid grids = new Grid(500, 500);
+	private int width = 500; // scene width
+	private int height = 500 + 100;// scene height
+	private Timeline timeline;
+	
 
 	public Game() {
 		// TODO Auto-generated constructor stub
+	}
+
+	
+		public void updateTimeline(String speed) { //speed e.g. "Fastest" //
+		SpeedControl speedControl = new SpeedControl();
+		Duration duration = speedControl.getNewDuration("Fastest");//change to speed
+		
+		EventHandler<ActionEvent>eventHandler = getEventHandler();
+		KeyFrame keyFrame = new KeyFrame(duration,eventHandler);
+		timeline = new Timeline(keyFrame);
+		timeline.setCycleCount(Timeline.INDEFINITE);
+		timeline.play();
+		
+	}
+	
+
+	public EventHandler<ActionEvent> getEventHandler() {
+//		return (t -> grids.update());
+		return new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				grids.update();
+			}
+			
+		};
 	}
 
 	@Override
@@ -38,7 +77,12 @@ public class Game extends Application {
 	 */
 	public void start(Stage primaryStage) throws Exception {
 
+
+		//Initialize  the game
+	
+
 		grids.initialFill();
+
 
 		// basic UI button creation
 		Button clear = new Button("Clear");
@@ -140,6 +184,7 @@ public class Game extends Application {
 
 			}
 		});
+		
 
 		// ____________Chooser button Handler______
 
@@ -265,6 +310,10 @@ public class Game extends Application {
 		root.setCenter(grids);
 		root.setBottom(hboxHolder);
 		Scene scene = new Scene(root, 560, 700);
+		//add some condition to set the speed mode
+//		updateTimeline();
+		updateTimeline("Fastest");
+		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
