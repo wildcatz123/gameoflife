@@ -163,12 +163,16 @@ public class Game extends Application {
 
 	public void setCellEvent(){
 		for(Node cell: grids.getChildren()) {
-			Cell cellText = (Cell) cell;
+			Cell cellClicked = (Cell) cell;
 			cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			    @Override
 			    public void handle(MouseEvent event) {
 			    	   System.out.println(event.getSource().toString());
-			    	   cellText.setFill(Color.AQUA);
+			    	   if(cellClicked.isAlive()) {
+			    		   cellClicked.setAlive(false);
+			    	   }else {
+			    		   cellClicked.setAlive(true);
+			    	   }
 			    }});
 		}
 	} 
