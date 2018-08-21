@@ -34,7 +34,6 @@ public class Game extends Application {
 	}
 
 	
-//	public void updateTimeline() {
 		public void updateTimeline(String speed) { //speed e.g. "Fastest" //
 		SpeedControl speedControl = new SpeedControl();
 		Duration duration = speedControl.getNewDuration("Fastest");//change to speed
