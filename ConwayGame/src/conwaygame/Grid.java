@@ -3,6 +3,7 @@ package conwaygame;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -50,7 +51,7 @@ public class Grid extends GridPane{
 				provideNeighbours(cells[y][x]);
 			}
 		}
-		
+
 	}
 
 	/**
@@ -66,10 +67,12 @@ public class Grid extends GridPane{
 						cells[y][x].setAlive(true);
 						cells[y][x].setFill(Color.BLACK);
 						cells[y][x].setStroke(Color.WHITE);	
+		
 					}
 				}
 			}
 		}
+
 	/**
 	 * Applies the rules of Conway's Game of Life to update the grid.
 	 * 
@@ -154,4 +157,48 @@ public class Grid extends GridPane{
 		}
 	}
 
+	public void setAllGreen() {
+		for(int y = 0;y<height/cellHeight-5;y++) {
+			for(int x = 0;x< width/cellWidth-5; x++) {
+				if(cells[y][x].isAlive()==true) {
+					cells[y][x].setFill(Color.CHARTREUSE);	
+				}
+
+			}
+		}
+	}
+	public void setAllBlue() {
+		for(int y = 0;y<height/cellHeight-5;y++) {
+			for(int x = 0;x< width/cellWidth-5; x++) {
+				if(cells[y][x].isAlive()==true) {
+					cells[y][x].setFill(Color.CORNFLOWERBLUE);	
+				}
+
+			}
+		}
+	}
+	
+	public void setAllPink() {
+		for(int y = 0;y<height/cellHeight-5;y++) {
+			for(int x = 0;x< width/cellWidth-5; x++) {
+				if(cells[y][x].isAlive()==true) {
+					cells[y][x].setFill(Color.DEEPPINK);	
+				}
+			}
+		}
+	}
+	public void pickColor() {
+		ColorPicker colorPick = new ColorPicker();
+		Color color =colorPick.getValue();
+		for(int y = 0;y<height/cellHeight-5;y++) {
+			for(int x = 0;x< width/cellWidth-5; x++) {
+				if(cells[y][x].isAlive()==true) {
+					cells[y][x].setFill(color);	
+				}
+
+			}
+		}
+	}
+	
 }
+
