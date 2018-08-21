@@ -141,5 +141,10 @@ public void randomFill() {
 		this.cells = cells;
 	}
 	
+	public void addShape(Shape s) {
+		for (Shape.Coordinate coord : s.getCoords()) {
+			cells[coord.y][coord.x].setAlive(true);
+		}
+	}
 
 }
