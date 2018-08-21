@@ -76,4 +76,49 @@ public class Shape {
 		return ship;
 	}
 	
+	public static Shape gliderGun() {
+		Shape gliderGun = new Shape();
+		gliderGun.coords = new ArrayList<Coordinate>();
+		gliderGun.coords.add(new Coordinate(7,17));
+		gliderGun.coords.add(new Coordinate(8,17));
+		gliderGun.coords.add(new Coordinate(7,18));
+		gliderGun.coords.add(new Coordinate(8,18));
+		gliderGun.coords.add(new Coordinate(17,17));
+		gliderGun.coords.add(new Coordinate(17,18));
+		gliderGun.coords.add(new Coordinate(17,19));
+		gliderGun.coords.add(new Coordinate(18,16));
+		gliderGun.coords.add(new Coordinate(18,20));
+		gliderGun.coords.add(new Coordinate(19,15));
+		gliderGun.coords.add(new Coordinate(20,15));
+		gliderGun.coords.add(new Coordinate(19,21));
+		gliderGun.coords.add(new Coordinate(20,15));
+		gliderGun.coords.add(new Coordinate(20,21));
+		gliderGun.coords.add(new Coordinate(21,18));
+		gliderGun.coords.add(new Coordinate(22,16));
+		gliderGun.coords.add(new Coordinate(22,20));
+		gliderGun.coords.add(new Coordinate(23,17));
+		gliderGun.coords.add(new Coordinate(23,18));
+		gliderGun.coords.add(new Coordinate(23,19));
+		gliderGun.coords.add(new Coordinate(24,18));
+		gliderGun.coords.add(new Coordinate(27,15));
+		gliderGun.coords.add(new Coordinate(27,16));
+		gliderGun.coords.add(new Coordinate(27,17));
+		gliderGun.coords.add(new Coordinate(28,15));
+		gliderGun.coords.add(new Coordinate(28,16));
+		gliderGun.coords.add(new Coordinate(28,17));
+		gliderGun.coords.add(new Coordinate(29,14));
+		gliderGun.coords.add(new Coordinate(29,18));
+
+		gliderGun.coords.add(new Coordinate(31,13));
+		gliderGun.coords.add(new Coordinate(31,14));
+		gliderGun.coords.add(new Coordinate(31,18));
+		gliderGun.coords.add(new Coordinate(31,19));
+		gliderGun.coords.add(new Coordinate(41,15));
+		gliderGun.coords.add(new Coordinate(41,16));
+		gliderGun.coords.add(new Coordinate(42,15));
+		gliderGun.coords.add(new Coordinate(42,16));
+		
+		
+		return gliderGun;
+	}
 }
