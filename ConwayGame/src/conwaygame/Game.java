@@ -1,6 +1,8 @@
 package conwaygame;
 
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,14 +20,41 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Game extends Application {
 	private int width = 500; // scene width
 	private int height = 500 + 100;// scene height
 	private Grid grids = new Grid(500, 500);
+	private Timeline timeline;
 
 	public Game() {
 		// TODO Auto-generated constructor stub
+//		updateTimeline();
+	}
+
+	
+	public void updateTimeline() {
+		// TODO Auto-generated method stub
+	//	Duration duration = new Duration(getSpeed().getMilliseconds());
+		EventHandler<ActionEvent>eventHandler = getEventHandler();
+		KeyFrame keyFrame = new KeyFrame(Duration.millis(600),eventHandler);
+		timeline = new Timeline(keyFrame);
+		timeline.setCycleCount(Timeline.INDEFINITE);
+		timeline.play();
+		
+	}
+
+	public EventHandler<ActionEvent> getEventHandler() {
+//		return (t -> grids.update());
+		return new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				grids.update();
+			}
+			
+		};
 	}
 
 	@Override
@@ -35,6 +64,7 @@ public class Game extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		//Initialize  the game
+		
 		
 		
 		
@@ -125,6 +155,7 @@ public class Game extends Application {
 
 			}
 		});
+		
 
 		// stage > scene > VBox
 		// VBox contains GridPane for display the grid and HBox to display the
@@ -141,6 +172,9 @@ public class Game extends Application {
 		root.setCenter(grids);
 		//grids.setGridLinesVisible(true);
 		root.setBottom(hboxHolder);
+		
+		updateTimeline();
+		
 		Scene scene = new Scene(root, 600, 600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
