@@ -31,11 +31,13 @@ public class Cell extends Rectangle{
 
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
-		if ((xPos>10&&xPos<49)&&(yPos>10&&yPos<49)) {
+		if ((xPos>=5&&xPos<=45)&&(yPos>=5&&yPos<=45)) {
 			if (isAlive) {
 				setFill(Color.BLACK);
+				setStroke(Color.WHITE);
 			} else {
 				setFill(Color.WHITE);
+				setStroke(Color.BLACK);
 			}
 		}
 	}

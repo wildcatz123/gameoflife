@@ -43,7 +43,8 @@ public class Game extends Application {
 		
 		
 		
-		
+		grids.initialFill();
+
 		
 		
 		
@@ -89,8 +90,7 @@ public class Game extends Application {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				// playButton();
-
+				grids.update();
 				System.out.println("Play Button press");
 			}
 		});
@@ -100,7 +100,7 @@ public class Game extends Application {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				// randomFillButton();
+				grids.randomFill();
 				System.out.println("Start Button press");
 			}
 		});
@@ -139,9 +139,9 @@ public class Game extends Application {
 		controlPanel.setPadding(new Insets(10));
 		controlPanel.setAlignment(Pos.CENTER);
 		root.setCenter(grids);
-		grids.setGridLinesVisible(true);
+		//grids.setGridLinesVisible(true);
 		root.setBottom(hboxHolder);
-		Scene scene = new Scene(root, 500, 500);
+		Scene scene = new Scene(root, 600, 600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 
@@ -160,7 +160,7 @@ public class Game extends Application {
 	
 	
 	public void clearButton(){
-	grids.getChildren().clear();
+	//grids.getChildren().clear();
 	}
 	
 	

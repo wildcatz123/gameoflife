@@ -15,8 +15,8 @@ import javafx.scene.paint.Color;
 public class Grid extends GridPane{
     private int height;//500
     private int width;//500
-    private int cellWidth;//10
-    private int cellHeight;//10
+    private int cellWidth =10;//10
+    private int cellHeight = 10;//10
     private Cell[][] cells;
     
 	public Grid(int height, int width) {
@@ -26,21 +26,29 @@ public class Grid extends GridPane{
 	}
 
 	public void initialFill() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-		for(int x = 0;x< width/cellWidth-5; x++) {
-			if((x<5||x>54)&&(y<5||y>54)) {
-				Cell c = new Cell(10,10,y,x,false);
-				cells[y][x].setFill(Color.GRAY);
+		for(int y = 0;y<height/cellHeight;y++) {
+		for(int x = 0;x< width/cellWidth; x++) {
+			Cell c = new Cell(10,10,x,y,false);
+			this.add(c, x, y);
+			cells[y][x] = c;
+			if((x<5||x>45)||(y<5||y>45)) {
+				// to do 
+				cells[y][x].setFill(Color.GREY);
 				cells[y][x].setStroke(Color.GREY);			
 			}
-			if((y>5&&y<55)&&(x>5&&x<55)) {
-				cells[y][x].setAlive(false);
+			if((y>=5&&y<=45)&&(x>=5&&x<=45)) {
 				cells[y][x].setFill(Color.WHITE);
 				cells[y][x].setStroke(Color.BLACK);			
 
 			}
 		}
+		
 	}
+		for(int y = 0;y<height/cellHeight;y++) {
+			for(int x = 0;x< width/cellWidth; x++) {
+				provideNeighbours(cells[y][x]);
+			}
+		}
 }
 
 /**
@@ -98,7 +106,7 @@ public void randomFill() {
 				neighbours.add(cells[c.getYPos()-1][c.getXPos()-1]);
 			}
 			neighbours.add(cells[c.getYPos()][c.getXPos()-1]);
-			if (c.getYPos() < height - 1) {
+			if (c.getYPos() < height/cellHeight - 1) {
 				neighbours.add(cells[c.getYPos()+1][c.getXPos()-1]);
 			}
 		}
@@ -107,17 +115,17 @@ public void randomFill() {
 		if (c.getYPos() > 0) {
 			neighbours.add(cells[c.getYPos()-1][c.getXPos()]);
 		}
-		if (c.getYPos() < height - 1) {
+		if (c.getYPos() < height/cellHeight - 1) {
 			neighbours.add(cells[c.getYPos()+1][c.getXPos()]);
 		}
 		
 		//Right column
-		if (c.getXPos() < width - 1) {
+		if (c.getXPos() < width/cellWidth - 1) {
 			if (c.getYPos() > 0) {
 				neighbours.add(cells[c.getYPos()-1][c.getXPos()+1]);
 			}
 			neighbours.add(cells[c.getYPos()][c.getXPos()+1]);
-			if (c.getYPos() < height - 1) {
+			if (c.getYPos() < height/cellHeight - 1) {
 				neighbours.add(cells[c.getYPos()+1][c.getXPos()+1]);
 			}
 		}
