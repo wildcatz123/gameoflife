@@ -46,19 +46,7 @@ public class Game extends Application {
 		timeline.play();
 		
 	}
-	/*
-	 * 
-	 */
 	
-
-	/*public void setSpeed(SpeedControl speed) {
-		// TODO Auto-generated method stub
-		this.Speed.set(speed);
-		
-	}
-   public SpeedControl getSpeed() {
-	   return SpeedControl.get();
-   }*/
 
 	public EventHandler<ActionEvent> getEventHandler() {
 //		return (t -> grids.update());
