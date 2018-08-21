@@ -61,4 +61,19 @@ public class Shape {
 		return glider;
 	}
 	
+	public static Shape spaceShip() {
+		Shape ship = new Shape();
+		ship.coords = new ArrayList<Coordinate>();
+		ship.coords.add(new Coordinate(31,10));
+		ship.coords.add(new Coordinate(30,11));
+		ship.coords.add(new Coordinate(30,12));
+		ship.coords.add(new Coordinate(30,13));
+		ship.coords.add(new Coordinate(31,13));
+		ship.coords.add(new Coordinate(32,13));
+		ship.coords.add(new Coordinate(33,13));
+		ship.coords.add(new Coordinate(34,12));
+		ship.coords.add(new Coordinate(34,10));
+		return ship;
+	}
+	
 }
