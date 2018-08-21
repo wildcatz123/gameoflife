@@ -27,23 +27,38 @@ public class Game extends Application {
 	private int height = 500 + 100;// scene height
 	private Grid grids = new Grid(500, 500);
 	private Timeline timeline;
+	
 
 	public Game() {
 		// TODO Auto-generated constructor stub
-//		updateTimeline();
 	}
 
 	
-	public void updateTimeline() {
-		// TODO Auto-generated method stub
-	//	Duration duration = new Duration(getSpeed().getMilliseconds());
+//	public void updateTimeline() {
+		public void updateTimeline(String speed) { //speed e.g. "Fastest" //
+		SpeedControl speedControl = new SpeedControl();
+		Duration duration = speedControl.getNewDuration("Fastest");//change to speed
+		
 		EventHandler<ActionEvent>eventHandler = getEventHandler();
-		KeyFrame keyFrame = new KeyFrame(Duration.millis(600),eventHandler);
+		KeyFrame keyFrame = new KeyFrame(duration,eventHandler);
 		timeline = new Timeline(keyFrame);
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();
 		
 	}
+	/*
+	 * 
+	 */
+	
+
+	/*public void setSpeed(SpeedControl speed) {
+		// TODO Auto-generated method stub
+		this.Speed.set(speed);
+		
+	}
+   public SpeedControl getSpeed() {
+	   return SpeedControl.get();
+   }*/
 
 	public EventHandler<ActionEvent> getEventHandler() {
 //		return (t -> grids.update());
@@ -64,20 +79,9 @@ public class Game extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		//Initialize  the game
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		grids.initialFill();
 
-		
-		
-		
 		
 		// basic UI button creation
 		Button clear = new Button("Clear");
@@ -172,8 +176,9 @@ public class Game extends Application {
 		root.setCenter(grids);
 		//grids.setGridLinesVisible(true);
 		root.setBottom(hboxHolder);
-		
-		updateTimeline();
+		//add some condition to set the speed mode
+//		updateTimeline();
+		updateTimeline("Fastest");
 		
 		Scene scene = new Scene(root, 600, 600);
 		primaryStage.setScene(scene);
