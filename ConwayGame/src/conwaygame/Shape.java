@@ -50,4 +50,15 @@ public class Shape {
 		return line;
 	}
 	
+	public static Shape glider() {
+		Shape glider = new Shape();
+		glider.coords = new ArrayList<Coordinate>();
+		glider.coords.add(new Coordinate(10,10));
+		glider.coords.add(new Coordinate(10,12));
+		glider.coords.add(new Coordinate(9,12));
+		glider.coords.add(new Coordinate(11,12));
+		glider.coords.add(new Coordinate(11,11));
+		return glider;
+	}
+	
 }
