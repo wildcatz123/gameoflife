@@ -3,6 +3,7 @@
  */
 package conwaygame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,13 +19,35 @@ public class Shape {
 	
 	private List<Coordinate> coords;
 	
-	public class Coordinate {
+	public static class Coordinate {
+		
 		public int x;
 		public int y;
+		
+		public Coordinate(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+		
 	}
 
 	public List<Coordinate> getCoords() {
 		return coords;
+	}
+	
+	/**
+	 * For testing if I have x and y the right way round.
+	 * 
+	 * @return A horizontal line.
+	 */
+	public static Shape testLine() {
+		Shape line = new Shape();
+		line.coords = new ArrayList<Coordinate>();
+		line.coords.add(new Coordinate(10,10));
+		line.coords.add(new Coordinate(11,10));
+		line.coords.add(new Coordinate(12,10));
+		line.coords.add(new Coordinate(13,10));
+		return line;
 	}
 	
 }
