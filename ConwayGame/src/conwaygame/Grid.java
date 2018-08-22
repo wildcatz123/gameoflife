@@ -59,8 +59,8 @@ public class Grid extends GridPane{
 		this.fill = Color.CHARTREUSE;
 		this.stroke = Color.BLACK;
 		System.out.println("Green Color");
-		for(int y = 5;y<height/cellHeight-5;y++) {
-			for(int x = 5;x< width/cellWidth-5; x++) {
+		for(int y = 5;y<=height/cellHeight-5;y++) {
+			for(int x = 5;x<=width/cellWidth-5; x++) {
 				cells[y][x].changeColor(fill, stroke);
 
 			}
@@ -68,16 +68,20 @@ public class Grid extends GridPane{
 		
 	}
 	public void setAllBlue() {
-		for(int y = 5;y<height/cellHeight-5;y++) {
-			for(int x = 5;x< width/cellWidth-5; x++) {
+		this.fill = Color.BLUE;
+		this.stroke = Color.BLACK;
+		for(int y = 5;y<=height/cellHeight-5;y++) {
+			for(int x = 5;x<= width/cellWidth-5; x++) {
 				cells[y][x].changeColor(fill, stroke);
 			}
 		}
 	}
 	
 	public void setAllPink() {
-		for(int y = 5;y<height/cellHeight-5;y++) {
-			for(int x = 5;x< width/cellWidth-5; x++) {
+		this.fill = Color.PINK;
+		this.stroke = Color.BLACK;
+		for(int y = 5;y<=height/cellHeight-5;y++) {
+			for(int x = 5;x<= width/cellWidth-5; x++) {
 				cells[y][x].changeColor(fill, stroke);
 			}
 		}
