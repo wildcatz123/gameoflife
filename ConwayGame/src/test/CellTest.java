@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -61,40 +62,42 @@ public class CellTest {
 	}
 
 	@Test
-	*//**
+	/**
 	 * test good population
-	 *//*
+	 */
 	public void testAliveAnd2Neighbours(){
 		testNextStage(true, 2, true);
 	}
 
 	@Test
-	*//**
+	/**
 	 * test under population
-	 *//*
+	 */
 	public void testAliveAnd1Neighbours() {
 		testNextStage(true,1,false);
 	}
 	@Test
-	*//**
+	/**
 	 * test over population
-	 *//*
+	 */
 	public void testAliveAnd4Neighbours(){
 		testNextStage(true, 4, false);
 	}
 	
 	@Test
-	*//**
+	/**
 	 * test reproduction.
-	 *//*
+	 */
+
 	public void testDeadAnd3Neighbours() {
 		testNextStage(false,3,true);
 	}
 
 	@Test
-	*//**
+	/**
 	 * test not reproduction
-	 *//*
+	*/
+	
 	public void testDeadAnd2Neighbours() {
 		testNextStage(false,2,false);
 	}
