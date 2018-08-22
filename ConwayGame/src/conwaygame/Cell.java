@@ -41,6 +41,10 @@ public class Cell extends Rectangle{
 			}
 		}
 	}
+	
+	public void setWillBeAlive(boolean willBeAlive) {
+		this.willBeAlive = willBeAlive;
+	}
    
 	public int getXPos() {
 		return xPos;
