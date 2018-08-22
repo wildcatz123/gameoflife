@@ -1,4 +1,4 @@
-/*package test;
+package test;
 
 import conwaygame.Cell;
 
@@ -99,4 +99,4 @@ public class CellTest {
 		testNextStage(false,2,false);
 	}
 	
-}*/
+}

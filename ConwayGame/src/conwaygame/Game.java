@@ -1,5 +1,7 @@
 package conwaygame;
 
+
+
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Separator;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -44,7 +47,8 @@ public class Game extends Application {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void updateTimeline(String speed) { // speed e.g. "Fastest" //
+	
+	public void updateTimeline(String speed) { //speed e.g. "Fastest" //
 		boolean wasPlaying;
 		if (timeline == null) {
 			wasPlaying = false;
@@ -52,7 +56,7 @@ public class Game extends Application {
 			wasPlaying = (timeline.getStatus() == Status.RUNNING);
 			timeline.stop();
 		}
-
+		
 		SpeedControl speedControl = new SpeedControl();
 		Duration duration = speedControl.getNewDuration(speed);// change to
 																// speed
@@ -63,6 +67,8 @@ public class Game extends Application {
 
 		if (wasPlaying)
 			timeline.play();
+		
+		if (wasPlaying) timeline.play();
 	}
 
 	@Override
@@ -160,8 +166,11 @@ public class Game extends Application {
 		colorButton.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		colorButton.setOnMouseEntered(new MenuButtonColorHandler(colorButton, Color.SILVER));
 		colorButton.setOnMouseExited(new MenuButtonColorHandler(colorButton, Color.CORNFLOWERBLUE));
+		MenuButton menuButton = new MenuButton("Shape Choose", null, shape1, shape2, shape3, shape4);
+		menuButton.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
+		menuButton.setOnMouseEntered(new MenuButtonColorHandler(menuButton, Color.MEDIUMSEAGREEN));
+		menuButton.setOnMouseExited(new MenuButtonColorHandler(menuButton, Color.KHAKI));
 
-		// the clear button Handler
 		clear.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -215,6 +224,8 @@ public class Game extends Application {
 
 		speedButton.setOnAction(new EventHandler<ActionEvent>() {
 
+	//	menuButton.setOnAction(new EventHandler<ActionEvent>() {
+
 			@Override
 			public void handle(ActionEvent arg0) {
 
@@ -253,6 +264,7 @@ public class Game extends Application {
 				updateTimeline(speed);
 			}
 		});
+
 
 		// Shape Button Handlers______________________
 

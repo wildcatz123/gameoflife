@@ -117,7 +117,6 @@ public class Shape {
 		gliderGun.coords.add(new Coordinate(42,15));
 		gliderGun.coords.add(new Coordinate(42,16));
 		
-		
 		return gliderGun;
 	}
 }

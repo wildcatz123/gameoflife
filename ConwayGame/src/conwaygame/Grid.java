@@ -19,6 +19,9 @@ public class Grid extends GridPane{
 	private int cellWidth =10;//10
 	private int cellHeight = 10;//10
 	private Cell[][] cells;
+	private Color fill = Color.BLACK;
+	private Color stroke = Color.WHITE;
+	
 
 	public Grid(int height, int width) {
 		this.height = height;
@@ -40,9 +43,7 @@ public class Grid extends GridPane{
 					cells[y][x].setStroke(Color.GREY);			
 				}
 				if((y>=5&&y<=45)&&(x>=5&&x<=45)) {
-					cells[y][x].setFill(Color.WHITE);
-					cells[y][x].setStroke(Color.BLACK);			
-
+					cells[y][x].setAlive(false);							
 				}
 			}
 
@@ -54,6 +55,37 @@ public class Grid extends GridPane{
 		}
 	}
 
+	public void setAllGreen() {
+		this.fill = Color.CHARTREUSE;
+		this.stroke = Color.BLACK;
+		System.out.println("Green Color");
+		for(int y = 5;y<=height/cellHeight-5;y++) {
+			for(int x = 5;x<=width/cellWidth-5; x++) {
+				cells[y][x].changeColor(fill, stroke);
+
+			}
+		}
+		
+	}
+	public void setAllBlue() {
+		this.fill = Color.BLUE;
+		this.stroke = Color.BLACK;
+		for(int y = 5;y<=height/cellHeight-5;y++) {
+			for(int x = 5;x<= width/cellWidth-5; x++) {
+				cells[y][x].changeColor(fill, stroke);
+			}
+		}
+	}
+	
+	public void setAllPink() {
+		this.fill = Color.PINK;
+		this.stroke = Color.BLACK;
+		for(int y = 5;y<=height/cellHeight-5;y++) {
+			for(int x = 5;x<= width/cellWidth-5; x++) {
+				cells[y][x].changeColor(fill, stroke);
+			}
+		}
+	}
 
 
 	/**
@@ -67,9 +99,6 @@ public class Grid extends GridPane{
 				int checkFill = (int)(Math.random()*30);
 					if(checkFill<1) {
 						cells[y][x].setAlive(true);
-						cells[y][x].setFill(Color.BLACK);
-						cells[y][x].setStroke(Color.WHITE);	
-
 					}
 				}
 			}
@@ -155,47 +184,20 @@ public class Grid extends GridPane{
 			for(int x = 0;x< width/cellWidth; x++) {
 				Cell c = cells[y][x];
 				c.setAlive(false);
+				c.setWillBeAlive(false);
 			}
 		}
 	}
 
-	public void setAllGreen() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
-				if(cells[y][x].isAlive()==true) {
-					cells[y][x].setFill(Color.CHARTREUSE);	
-				}
 
-			}
-		}
-	}
-	public void setAllBlue() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
-				if(cells[y][x].isAlive()==true) {
-					cells[y][x].setFill(Color.CORNFLOWERBLUE);	
-				}
-
-			}
-		}
-	}
-	
-	public void setAllPink() {
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
-				if(cells[y][x].isAlive()==true) {
-					cells[y][x].setFill(Color.DEEPPINK);	
-				}
-			}
-		}
-	}
 	public void pickColor() {
 		ColorPicker colorPick = new ColorPicker();
 		Color color =colorPick.getValue();
-		for(int y = 0;y<height/cellHeight-5;y++) {
-			for(int x = 0;x< width/cellWidth-5; x++) {
+		for(int y = 5;y<height/cellHeight-5;y++) {
+			for(int x = 5;x< width/cellWidth-5; x++) {
 				if(cells[y][x].isAlive()==true) {
-					cells[y][x].setFill(color);	
+					cells[y][x].setCellFill(color);	
+					cells[y][x].setCellStroke(Color.BLACK);	
 				}
 
 			}
