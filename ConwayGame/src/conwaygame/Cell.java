@@ -18,11 +18,11 @@ import javafx.stage.Stage;
 public class Cell extends Rectangle{
     private int xPos;	// display the x position
     private int yPos;	// display the y position
-    private boolean isAlive;
+    private boolean isAlive;	//Cells current state is alive and represented by a non-white colour in the viewable grid
     private boolean willBeAlive; 	//Whether this cell should be alive in the next frame.
     private List<Cell> neighbours;	// store the (up to 8) neighbours of the target cell in this ArrayList
-    private Color cellStroke = Color.WHITE;		//life
-    private Color cellFill = Color.BLACK;		//life
+    private Color cellStroke = Color.WHITE;		//single cell border for an alive cell
+    private Color cellFill = Color.BLACK;		//single cell fill colour for an alive cell
 
 
     //Constructor
@@ -33,7 +33,6 @@ public class Cell extends Rectangle{
 		this.setAlive(isAlive);
 	}
 
-	
 	//Getters and Setters
 	public boolean isAlive() {
 		return isAlive;
@@ -62,7 +61,7 @@ public class Cell extends Rectangle{
 		this.willBeAlive = willBeAlive;
 	}
    
-	//Method that allows the changing of cell/grid appearance based on state
+	//Method that allows the changing of cell/grid colour appearance based on state
 	public void changeColor(Color fill, Color stroke) {
 		this.cellFill = fill;
 		this.cellStroke = stroke;
