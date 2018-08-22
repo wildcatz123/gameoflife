@@ -339,7 +339,7 @@ public class Game extends Application {
 		root.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
 		root.setCenter(grids);
 
-		root.setLeft(hboxHolder);
+		root.setBottom(hboxHolder);
 		Scene scene = new Scene(root, 560, 700);
 		//add some condition to set the speed mode
 		//		updateTimeline();
@@ -347,7 +347,6 @@ public class Game extends Application {
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
-
 		setCellEvent();
 
 

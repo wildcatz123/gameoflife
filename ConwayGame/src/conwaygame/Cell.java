@@ -49,6 +49,11 @@ public class Cell extends Rectangle{
 		}
 	}
    
+	public void changeColor(Color fill, Color stroke) {
+		this.cellFill = fill;
+		this.cellStroke = stroke;
+	}
+
 	
 
 	public Color getCellStroke() {
