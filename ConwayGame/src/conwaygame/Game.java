@@ -21,7 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -32,7 +31,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Game extends Application {
-
 	/*
 	 * private int width = 500; // scene width private int height = 500 + 100;//
 	 * scene height
@@ -357,7 +355,6 @@ public class Game extends Application {
 		// add some condition to set the speed mode
 		// updateTimeline();
 		updateTimeline(this.speed);
-
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		setCellEvent();
