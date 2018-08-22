@@ -144,7 +144,7 @@ public class Game extends Application {
 		MenuItem color2 = new MenuItem("Green");
 		MenuItem color3 = new MenuItem("Pink");
 		MenuItem color4 = new MenuItem("Colour Picker");
-		MenuButton colorButton = new MenuButton("Clour", null, color1, color2, color3, color4);
+		MenuButton colorButton = new MenuButton("Colour", null, color1, color2, color3, color4);
 		colorButton.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		colorButton.setOnMouseEntered(new MenuButtonColorHandler(colorButton, Color.MEDIUMSEAGREEN));
 		colorButton.setOnMouseExited(new MenuButtonColorHandler(colorButton, Color.KHAKI));
