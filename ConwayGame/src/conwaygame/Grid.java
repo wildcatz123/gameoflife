@@ -184,6 +184,7 @@ public class Grid extends GridPane{
 			for(int x = 0;x< width/cellWidth; x++) {
 				Cell c = cells[y][x];
 				c.setAlive(false);
+				c.setWillBeAlive(false);
 			}
 		}
 	}

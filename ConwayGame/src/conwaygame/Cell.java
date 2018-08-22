@@ -48,6 +48,10 @@ public class Cell extends Rectangle{
 			}
 		}
 	}
+	
+	public void setWillBeAlive(boolean willBeAlive) {
+		this.willBeAlive = willBeAlive;
+	}
    
 	public void changeColor(Color fill, Color stroke) {
 		this.cellFill = fill;
