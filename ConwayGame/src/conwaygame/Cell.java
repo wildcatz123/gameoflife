@@ -1,11 +1,8 @@
 package conwaygame;
-import java.awt.Stroke;
-import java.util.List;
 
+import java.util.List;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
-import javafx.stage.Stage;
 
 /**
  * A Cell object represents a single cell in the grid of Conway's Game of Life.
@@ -145,8 +142,5 @@ public class Cell extends Rectangle{
 	public void update() {
 		setAlive(willBeAlive);
 	}
-
-	
-	
 
 }
