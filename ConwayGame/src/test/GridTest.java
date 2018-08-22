@@ -83,5 +83,18 @@ public class GridTest {
         gridPane.update();
         assertEquals(cellUpdate.isAlive(), false);
 	}
-	
+	@Test
+	/**
+	 * 
+	 */
+	public void testClearAll() {
+		
+	}
+	@Test
+	/**
+	 * 
+	 */
+	public void testSetAllPing() {
+		
+	}
 }
