@@ -1,6 +1,4 @@
 package conwaygame;
-
-
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ColorPicker;
-
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -48,8 +45,10 @@ public class Game extends Application {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public void updateTimeline(String speed) { //speed e.g. "Fastest" //
+/*
+ * 
+ */
+	public void updateTimeline(String speed) { 
 		boolean wasPlaying;
 		if (timeline == null) {
 			wasPlaying = false;
@@ -67,21 +66,7 @@ public class Game extends Application {
 		
 		if (wasPlaying) timeline.play();
 	}
-
-
-	//	public EventHandler<ActionEvent> getEventHandler() {
-	////		return (t -> grids.update());
-	//		return new EventHandler<ActionEvent>() {
-	//
-	//			@Override
-	//			public void handle(ActionEvent arg0) {
-	//				grids.update();
-	//			}
-	//			
-	//		};
-	//	}
-
-	@Override
+@Override
 	/**
 	 * the stage of the game
 	 */
