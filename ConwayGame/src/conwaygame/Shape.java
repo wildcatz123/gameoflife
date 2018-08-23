@@ -36,7 +36,7 @@ public class Shape {
 	}
 	
 	/**
-	 * For testing if I have x and y the right way round.
+	 * For testing if x and y are the right way round.
 	 * 
 	 * @return A horizontal line.
 	 */

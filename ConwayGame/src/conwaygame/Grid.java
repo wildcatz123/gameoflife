@@ -59,7 +59,7 @@ public class Grid extends GridPane{
 
 	/**
 	 * The following 3 methods setAllGreen(), setAllBlue() and setAllPink()
-	 * Provide the colour change functionality for the Colour Button Event Handlers
+	 * Provide the colour change functionality for the Button Colour Event Handlers
 	 * and associated dropdown menu in the UI of the Game class
 	 */
 	//Sets current colour of alive cells in the game to green
@@ -97,9 +97,11 @@ public class Grid extends GridPane{
 	}
 
 	/**
-	 * Fills the whole grid with cells, a random mix of alive and dead.
+	 * Fills the whole grid with cells, a random mix of alive and dead. Called by 'Random Fill' button in Game.
+	 * This is one of the 3 options for user generated cells in the grid, the others being 
+	 * setCellEvent() and the Shape Button Handlers and associated drop down menu in the Game class
 	 * 
-	 * Should call provideNeighbours with each Cell as an argument after creating all the cells.
+	 * Should call provideNeighbours() with each Cell as an argument after creating all the cells.
 	 */
 	public void randomFill() {
 		for(int y = 5;y<height/cellHeight-5;y++) {
@@ -118,15 +120,15 @@ public class Grid extends GridPane{
 	 * Should call prepareForUpdate() on each Cell, then call update() on each Cell.
 	 */
 	public void update() {
-		for (Cell[] column : cells) {
+		for (Cell[] column : cells) {	//Iterate over all cells
 			for (Cell c : column) {
-				c.prepareForUpdate();
+				c.prepareForUpdate();	//Apply Conway's rules to all cells
 			}
 		}
 		for (Cell[] column : cells) {
 			for (Cell c : column) {
-				c.update();
-			}
+				c.update();				//All cells that prepareForUpdate() deemed should live in the next iteration
+			}							//appear as live cells in the next iteration as per update()
 		}
 	}
 
@@ -138,9 +140,9 @@ public class Grid extends GridPane{
 	 * @param c The Cell that needs its neighbours provided.
 	 */
 	public void provideNeighbours(Cell c) {
-		List<Cell> neighbours = new ArrayList<Cell>(8);
-
-		//Left column
+		List<Cell> neighbours = new ArrayList<Cell>(8);  //List contents will be up to 8 depending on location
+														//within grid.  Method accounts for X and Y values
+		//Left column									//that clash with our self imposed boundary of the viewable grid.
 		if (c.getXPos() > 0) {
 			if (c.getYPos() > 0) {
 				neighbours.add(cells[c.getYPos()-1][c.getXPos()-1]);
@@ -170,23 +172,35 @@ public class Grid extends GridPane{
 			}
 		}
 
-		c.setNeighbours(neighbours);
+		c.setNeighbours(neighbours);  //After the iteration through all possible adjacent cells add neighbours to List
 	}
 
+	//Accessor method for 2D array of cells
 	public Cell[][] getCells() {
 		return cells;
 	}
 
+	//Setter for cells 2D array
 	public void setCells(Cell[][] cells) {
 		this.cells = cells;
 	}
 	
+	/**
+	 * The shape dropdown menu and handlers in the Game UI trigger this method to populate
+	 * the viewable grid with the shape objects defined in the Shape class
+	 * 
+	 * @param s The selected shape of live cells to be added to the grid
+	 */
 	public void addShape(Shape s) {
 		for (Shape.Coordinate coord : s.getCoords()) {
 			cells[coord.y][coord.x].setAlive(true);
 		}
 	}
 	
+	/**
+	 * Pressing the 'Clear' button in the Game UI runs this method that reinitialises the game viewable grid
+	 * to a clear grid with no live cells.  
+	 */
 	public void clearAll() {
 		for(int y = 0;y<height/cellHeight;y++) {
 			for(int x = 0;x< width/cellWidth; x++) {
@@ -197,10 +211,15 @@ public class Grid extends GridPane{
 		}
 	}
 
-
+	/**
+	 * This method is an extended feature that is not currently fully implemented though remains an option in the UI
+	 * 
+	 * The intention if time allows is to allow the user to set the color of the animations
+	 * by selecting from a colour picker in addition to the current options in the dropdown menu
+	 */
 	public void pickColor() {
 		ColorPicker colorPick = new ColorPicker();
-		Color color =colorPick.getValue();
+		Color color = colorPick.getValue();
 		for(int y = 5;y<height/cellHeight-5;y++) {
 			for(int x = 5;x< width/cellWidth-5; x++) {
 				if(cells[y][x].isAlive()==true) {
@@ -212,4 +231,4 @@ public class Grid extends GridPane{
 		}
 	}
 
-				}
+}
