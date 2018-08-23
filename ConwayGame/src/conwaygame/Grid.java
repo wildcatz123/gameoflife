@@ -15,8 +15,8 @@ import javafx.scene.paint.Color;
 public class Grid extends GridPane{
 	private int height;	//set to 500 when instantiated in Game
 	private int width;	//set to 500 when instantiated in Game
-	private int cellWidth = 10;	//10 - width of single cell
-	private int cellHeight = 10;//10 - height of single cell
+	private int cellWidth = 10;	//10 - width of single rectangular cell
+	private int cellHeight = 10;//10 - height of single rectangular cell
 	private Cell[][] cells;		//2D Array storing all cells in the grid
 	private Color fill = Color.BLACK;	//Default alive cell fill color
 	private Color stroke = Color.WHITE;	//Default alive cell stroke color
@@ -29,12 +29,12 @@ public class Grid extends GridPane{
 	}
 
 	/**
-	 * Runs when the game window opens. Initialises the game by populating
+	 * Runs when the game window opens or the game is restarted. Initialises the game by populating
 	 * every coordinate on the viewable game grid with cells.  Also greys out
 	 * cells in the 5 cell wide border surrounding the game viewer.
 	 */
 	public void initialFill() {
-		for(int y = 0;y<height/cellHeight;y++) {  //starting at 0,0 iterate through every grid position to add cells
+		for(int y = 0;y<height/cellHeight;y++) {  //starting at 0,0 iterate through every position to add rectangular cells
 			for(int x = 0;x< width/cellWidth; x++) {
 				Cell c = new Cell(cellWidth,cellHeight,x,y,false);
 
@@ -50,13 +50,19 @@ public class Grid extends GridPane{
 			}
 
 		}
-		for(int y = 0;y<height/cellHeight;y++) {
+		for(int y = 0;y<height/cellHeight;y++) {	//iterate through the newly created grid of cells
 			for(int x = 0;x< width/cellWidth; x++) {
-				provideNeighbours(cells[y][x]);
+				provideNeighbours(cells[y][x]);		//run provideNeighbours() on every cell in the grid
 			}
 		}
 	}
 
+	/**
+	 * The following 3 methods setAllGreen(), setAllBlue() and setAllPink()
+	 * Provide the colour change functionality for the Colour Button Event Handlers
+	 * and associated dropdown menu in the UI of the Game class
+	 */
+	//Sets current colour of alive cells in the game to green
 	public void setAllGreen() {
 		this.fill = Color.CHARTREUSE;
 		this.stroke = Color.BLACK;
@@ -64,11 +70,11 @@ public class Grid extends GridPane{
 		for(int y = 5;y<=height/cellHeight-5;y++) {
 			for(int x = 5;x<=width/cellWidth-5; x++) {
 				cells[y][x].changeColor(fill, stroke);
-
 			}
 		}
-		
 	}
+	
+	//Sets current colour of alive cells in the game to blue
 	public void setAllBlue() {
 		this.fill = Color.BLUE;
 		this.stroke = Color.BLACK;
@@ -79,6 +85,7 @@ public class Grid extends GridPane{
 		}
 	}
 	
+	//Sets current colour of alive cells in the game to pink
 	public void setAllPink() {
 		this.fill = Color.PINK;
 		this.stroke = Color.BLACK;
@@ -89,22 +96,21 @@ public class Grid extends GridPane{
 		}
 	}
 
-
 	/**
-	 * Fills the whole grid with cells, a random fix of alive and dead.
+	 * Fills the whole grid with cells, a random mix of alive and dead.
 	 * 
 	 * Should call provideNeighbours with each Cell as an argument after creating all the cells.
 	 */
 	public void randomFill() {
 		for(int y = 5;y<height/cellHeight-5;y++) {
 			for(int x = 5;x< width/cellWidth-5; x++) {
-				int checkFill = (int)(Math.random()*30);
+				int checkFill = (int)(Math.random()*30); //
 					if(checkFill<1) {
 						cells[y][x].setAlive(true);
 					}
-				}
 			}
 		}
+	}
 
 	/**
 	 * Applies the rules of Conway's Game of Life to update the grid.
