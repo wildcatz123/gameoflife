@@ -2,7 +2,6 @@ package conwaygame;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -14,36 +13,39 @@ import javafx.scene.paint.Color;
  *
  */
 public class Grid extends GridPane{
-	private int height;//500
-	private int width;//500
-	private int cellWidth =10;//10
-	private int cellHeight = 10;//10
-	private Cell[][] cells;
-	private Color fill = Color.BLACK;
-	private Color stroke = Color.WHITE;
+	private int height;	//set to 500 when instantiated in Game
+	private int width;	//set to 500 when instantiated in Game
+	private int cellWidth = 10;	//10 - width of single cell
+	private int cellHeight = 10;//10 - height of single cell
+	private Cell[][] cells;		//2D Array storing all cells in the grid
+	private Color fill = Color.BLACK;	//Default alive cell fill color
+	private Color stroke = Color.WHITE;	//Default alive cell stroke color
 	
-
+	//Constructor
 	public Grid(int height, int width) {
 		this.height = height;
 		this.width = width;
 		setCells(new Cell[height/cellHeight][width/cellWidth]);
-		//setCells(new Cell[width/cellWidth][height/cellHeight]);
 	}
 
+	/**
+	 * Runs when the game window opens. Initialises the game by populating
+	 * every coordinate on the viewable game grid with cells.  Also greys out
+	 * cells in the 5 cell wide border surrounding the game viewer.
+	 */
 	public void initialFill() {
-		for(int y = 0;y<height/cellHeight;y++) {
+		for(int y = 0;y<height/cellHeight;y++) {  //starting at 0,0 iterate through every grid position to add cells
 			for(int x = 0;x< width/cellWidth; x++) {
 				Cell c = new Cell(cellWidth,cellHeight,x,y,false);
 
-				this.add(c, x, y);
-				cells[y][x] = c;
-				if((x<5||x>45)||(y<5||y>45)) {
-					// to do 
+				this.add(c, x, y);  //add a cell with its x and y coordinate
+				cells[y][x] = c;	//add current cell to the 2D Array
+				if((x<5||x>45)||(y<5||y>45)) {  	//This block sets cells outside the viewable game grid to grey
 					cells[y][x].setFill(Color.GREY);
 					cells[y][x].setStroke(Color.GREY);			
 				}
-				if((y>=5&&y<=45)&&(x>=5&&x<=45)) {
-					cells[y][x].setAlive(false);							
+				if((y>=5&&y<=45)&&(x>=5&&x<=45)) {	//And to treat cells in the viewable game grid as dead until a user
+					cells[y][x].setAlive(false);	//generated fill is initiated						
 				}
 			}
 
