@@ -106,7 +106,7 @@ public class Grid extends GridPane{
 	public void randomFill() {
 		for(int y = 5;y<height/cellHeight-5;y++) {
 			for(int x = 5;x< width/cellWidth-5; x++) {
-				int checkFill = (int)(Math.random()*30); //
+				int checkFill = (int)(Math.random()*30); 
 					if(checkFill<1) {
 						cells[y][x].setAlive(true);
 					}
