@@ -88,6 +88,7 @@ public class CellTest {
 	/**
 	 * test reproduction.
 	 */
+
 	public void testDeadAnd3Neighbours() {
 		testNextStage(false,3,true);
 	}
@@ -95,7 +96,8 @@ public class CellTest {
 	@Test
 	/**
 	 * test not reproduction
-	 */
+	*/
+	
 	public void testDeadAnd2Neighbours() {
 		testNextStage(false,2,false);
 	}

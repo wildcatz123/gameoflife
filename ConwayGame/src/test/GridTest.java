@@ -23,6 +23,8 @@ public class GridTest {
 	/**
 	 * test the provideNeighbours
 	 */
+	
+
 	public void testProvideNeighbours() {
 		gridPane.provideNeighbours(cell);
 		int neighbourNum = cell.getNeighbours().size();
@@ -83,5 +85,18 @@ public class GridTest {
         gridPane.update();
         assertEquals(cellUpdate.isAlive(), false);
 	}
-	
+	@Test
+	/**
+	 * 
+	 */
+	public void testClearAll() {
+		
+	}
+	@Test
+	/**
+	 * 
+	 */
+	public void testSetAllPing() {
+		
+	}
 }
