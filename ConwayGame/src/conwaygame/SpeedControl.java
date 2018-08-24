@@ -1,16 +1,17 @@
-/**
- * 
- */
+
 package conwaygame;
 
 import javafx.util.Duration;
 
 /**
+ * Speed Control Cass allows insertion of variable speeds selected from the UI into the Game timeline
+ * 
  * @author paultana
- *Speed control u
+ *
  */
 public class SpeedControl {
-
+	
+	//Speed mode required is passed as a string which is matched to differing durations in the timeline
 	public Duration getNewDuration(String mode) {
 		Duration duration; 
 		if (mode.equalsIgnoreCase("Slow")) {
