@@ -12,13 +12,21 @@ import java.util.List;
  * Taken together, these coordinates describe a shape of living Cells on a Conway's Game of Life grid.
  * This class has static methods that produce particular shapes with interesting behaviors.
  * 
+ * Static methods are called on Grids addShape() method
+ * 
  * @author jonesgare1
  *
  */
 public class Shape {
 	
+	//ArrayList storing coordinates outlining a given shape
 	private List<Coordinate> coords;
 	
+	/***
+	 * Sub class Coordinate holds x and y coordinates for placement of Shapes in the viewable grid
+	 * @author faanannath
+	 *
+	 */
 	public static class Coordinate {
 		
 		public int x;
@@ -30,7 +38,8 @@ public class Shape {
 		}
 		
 	}
-
+	
+	//Accessor method for the ArrayList of coordinates
 	public List<Coordinate> getCoords() {
 		return coords;
 	}
@@ -49,7 +58,11 @@ public class Shape {
 		line.coords.add(new Coordinate(13,10));
 		return line;
 	}
-	
+	/***
+	 * Produces a glider Shape of live cells at the given coordinates
+	 * 
+	 * @return a glider Shape
+	 */
 	public static Shape glider() {
 		Shape glider = new Shape();
 		glider.coords = new ArrayList<Coordinate>();
@@ -61,6 +74,11 @@ public class Shape {
 		return glider;
 	}
 	
+	/***
+	 * Produces a spaceship Shape of live cells at the given coordinates
+	 * 
+	 * @return a spaceship Shape
+	 */
 	public static Shape spaceShip() {
 		Shape ship = new Shape();
 		ship.coords = new ArrayList<Coordinate>();
@@ -76,6 +94,11 @@ public class Shape {
 		return ship;
 	}
 	
+	/***
+	 * Produces a glidergun Shape of live cells at the given coordinates
+	 * 
+	 * @return a glidergun shape
+	 */
 	public static Shape gliderGun() {
 		Shape gliderGun = new Shape();
 		gliderGun.coords = new ArrayList<Coordinate>();
