@@ -1,4 +1,5 @@
 package conwaygame;
+
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -30,11 +31,18 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/***
+ * This Game class holds the JavaFX User Interface, viewable grid and entry point for our Conway's Game
+ * 
+ * @author faanannath
+ *
+ */
+
 public class Game extends Application {
-	/*
-	 * private int width = 500; // scene width private int height = 500 + 100;//
-	 * scene height
-	 */
+	
+	//Have removed the height and width variables previously here 
+	//as Grid extends Gridpane allowing passing of these as parameters
+	 
 	private Grid grids = new Grid(500, 500);
 	private Timeline timeline;
 	private String speed = "Fast";
@@ -43,8 +51,16 @@ public class Game extends Application {
 	public Game() {
 		// TODO Auto-generated constructor stub
 	}
-
-
+	
+	/***
+	 * This method allows passing of a variable parameter speed 
+	 * via the speed menubar handler to change
+	 * the playback speed of the animation in the timeline
+	 * 
+	 * Adjusts the speed either before or during animation
+	 * 
+	 * @param speed 'Slow' 'Medium' 'Fast' 'Fastest'
+	 */
 	public void updateTimeline(String speed) { 
 
 		boolean wasPlaying;
@@ -58,7 +74,6 @@ public class Game extends Application {
 		SpeedControl speedControl = new SpeedControl();
 		Duration duration = speedControl.getNewDuration(speed);// change to
 																// speed
-		// EventHandler<ActionEvent>eventHandler = getEventHandler();
 		keyFrame = new KeyFrame(duration, t -> grids.update());
 		timeline = new Timeline(keyFrame);
 		timeline.setCycleCount(Timeline.INDEFINITE);
@@ -70,43 +85,53 @@ public class Game extends Application {
 	}
 
 	/**
-	 * the stage of the game
+	 * The following method implements the stage of the game
 	 */
 	public void start(Stage primaryStage) throws Exception {
-		// Initialize the game
+		
+		// Initialize the game and set up for user interaction
 		grids.initialFill();
 
-		// basic UI button creation
+		/**
+		 * The following block designated by //**BUTTON UI & MENU SETUP BEGINS** sets up the UI Buttons in the stage
+		 */
+		
+		//********BUTTON UI & MENU SETUP BEGINS********
 		Button clear = new Button("CLEAR");
 		clear.setFont(Font.font("Aldhabi", FontWeight.BOLD, FontPosture.ITALIC, 13));
 		clear.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		clear.setOnMouseEntered(new ButtonColorHandler(clear, Color.SILVER));
 		clear.setOnMouseExited(new ButtonColorHandler(clear, Color.CORNFLOWERBLUE));
-
+		
+		//'PLAY' button
 		Button play = new Button("PLAY");
 		play.setFont(Font.font("Aldhabi", FontWeight.BOLD, FontPosture.ITALIC, 13));
 		play.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		play.setOnMouseEntered(new ButtonColorHandler(play, Color.SILVER));
 		play.setOnMouseExited(new ButtonColorHandler(play, Color.CORNFLOWERBLUE));
-
+		
+		//'RANDOM FILL' button
 		Button randomFill = new Button("RANDOM FILL");
 		randomFill.setFont(Font.font("Aldhabi", FontWeight.BOLD, FontPosture.ITALIC, 13));
 		randomFill.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		randomFill.setOnMouseEntered(new ButtonColorHandler(randomFill, Color.SILVER));
 		randomFill.setOnMouseExited(new ButtonColorHandler(randomFill, Color.CORNFLOWERBLUE));
-
+		
+		//'STOP' button
 		Button stop = new Button("STOP");
 		stop.setFont(Font.font("Aldhabi", FontWeight.BOLD, FontPosture.ITALIC, 13));
 		stop.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		stop.setOnMouseEntered(new ButtonColorHandler(stop, Color.SILVER));
 		stop.setOnMouseExited(new ButtonColorHandler(stop, Color.CORNFLOWERBLUE));
-
+		
+		//'EXIT' button
 		Button exit = new Button("EXIT");
 		exit.setFont(Font.font("Aldhabi", FontWeight.BOLD, FontPosture.ITALIC, 13));
 		exit.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		exit.setOnMouseEntered(new ButtonColorHandler(exit, Color.SILVER));
 		exit.setOnMouseExited(new ButtonColorHandler(exit, Color.CORNFLOWERBLUE));
-
+		
+		//'CHOOSE SHAPES' menu item and button
 		CheckMenuItem shape1 = new CheckMenuItem("TEST LINE");
 		CheckMenuItem shape2 = new CheckMenuItem("GLIDER");
 		CheckMenuItem shape3 = new CheckMenuItem("SPACESHIP");
@@ -115,17 +140,21 @@ public class Game extends Application {
 		shape2.setSelected(false);
 		shape3.setSelected(false);
 		shape4.setSelected(false);
+		
+		//Keyboard shortcuts for Shapes menu options
 		shape1.setAccelerator(new KeyCodeCombination(KeyCode.B,KeyCodeCombination.SHORTCUT_DOWN));
 		shape2.setAccelerator(new KeyCodeCombination(KeyCode.U,KeyCodeCombination.SHORTCUT_DOWN));
 		shape3.setAccelerator(new KeyCodeCombination(KeyCode.I,KeyCodeCombination.SHORTCUT_DOWN));
 		shape4.setAccelerator(new KeyCodeCombination(KeyCode.O,KeyCodeCombination.SHORTCUT_DOWN));
+		
+		//'CHOOSE SHAPES' Button
 		MenuButton shapeButton = new MenuButton("CHOOSE SHAPES", null, shape1, shape2, shape3, shape4);
 		shapeButton.setFont(Font.font("Aldhabi", FontWeight.BOLD, FontPosture.ITALIC, 13));
 		shapeButton.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		shapeButton.setOnMouseEntered(new MenuButtonColorHandler(shapeButton, Color.SILVER));
 		shapeButton.setOnMouseExited(new MenuButtonColorHandler(shapeButton, Color.CORNFLOWERBLUE));
 
-		
+		//'SPEED' menu item
 		CheckMenuItem slowSpeed = new CheckMenuItem("SLOW");
 		CheckMenuItem medSpeed = new CheckMenuItem("MEDIUM ");
 		CheckMenuItem fastSpeed = new CheckMenuItem("FAST");
@@ -134,18 +163,21 @@ public class Game extends Application {
 		medSpeed.setSelected(false);
 		fastSpeed.setSelected(false);
 		fastestSpeed.setSelected(false);
+		
+		//Keyboard shortcuts for speed dropdown menu items
 		slowSpeed.setAccelerator(new KeyCodeCombination(KeyCode.W,KeyCodeCombination.SHORTCUT_DOWN));
 		medSpeed.setAccelerator(new KeyCodeCombination(KeyCode.E,KeyCodeCombination.SHORTCUT_DOWN));
 		fastSpeed.setAccelerator(new KeyCodeCombination(KeyCode.R,KeyCodeCombination.SHORTCUT_DOWN));
 		fastestSpeed.setAccelerator(new KeyCodeCombination(KeyCode.T,KeyCodeCombination.SHORTCUT_DOWN));
+		
+		//'SPEED' menu button
 		MenuButton speedButton = new MenuButton("SPEED", null, slowSpeed, medSpeed, fastSpeed, fastestSpeed);
 		speedButton.setFont(Font.font("Aldhabi", FontWeight.BOLD, FontPosture.ITALIC, 13));
 		speedButton.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		speedButton.setOnMouseEntered(new MenuButtonColorHandler(speedButton, Color.SILVER));
 		speedButton.setOnMouseExited(new MenuButtonColorHandler(speedButton, Color.CORNFLOWERBLUE));
 		
-		
-		
+		//'COLOUR' menu item
 		CheckMenuItem color1 = new CheckMenuItem("BLUE");
 		CheckMenuItem color2 = new CheckMenuItem("GREEN");
 		CheckMenuItem color3 = new CheckMenuItem("PINK");
@@ -154,10 +186,14 @@ public class Game extends Application {
 		color2.setSelected(false);
 		color3.setSelected(false);
 		color4.setSelected(false);
+		
+		//Keyboard shortcuts for Colour menu item
 		color1.setAccelerator(new KeyCodeCombination(KeyCode.A,KeyCodeCombination.SHORTCUT_DOWN));
 		color2.setAccelerator(new KeyCodeCombination(KeyCode.S,KeyCodeCombination.SHORTCUT_DOWN));
 		color3.setAccelerator(new KeyCodeCombination(KeyCode.D,KeyCodeCombination.SHORTCUT_DOWN));
 		color4.setAccelerator(new KeyCodeCombination(KeyCode.F,KeyCodeCombination.SHORTCUT_DOWN));
+		
+		//'COLOUR' menu button
 		MenuButton colorButton = new MenuButton("COLOUR", null, color1, color2, color3, color4);
 		colorButton.setFont(Font.font("Aldhabi", FontWeight.BOLD, FontPosture.ITALIC, 13));
 		colorButton.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
@@ -167,7 +203,10 @@ public class Game extends Application {
 		menuButton.setBackground(new Background(new BackgroundFill(Color.KHAKI, null, null)));
 		menuButton.setOnMouseEntered(new MenuButtonColorHandler(menuButton, Color.MEDIUMSEAGREEN));
 		menuButton.setOnMouseExited(new MenuButtonColorHandler(menuButton, Color.KHAKI));
-
+		
+		//********BUTTON UI SETUP ENDS********
+		
+		//********BUTTON EVENT HANDLERS BEGINS********
 		clear.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -177,7 +216,7 @@ public class Game extends Application {
 			}
 		});
 
-		// the play button Handler
+		//The 'PLAY' button EventHandler
 		play.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -187,7 +226,7 @@ public class Game extends Application {
 			}
 		});
 
-		// the Start button Handler
+		//The 'RANDOM FILL' button EventHandler
 		randomFill.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -197,7 +236,7 @@ public class Game extends Application {
 			}
 		});
 
-		// the Stop button Handler
+		//The 'STOP' button EventHandler
 		stop.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -206,7 +245,8 @@ public class Game extends Application {
 				System.out.println("Stop Button press");
 			}
 		});
-		// the Exit button Handler
+		
+		//The 'EXIT' button EventHandler
 		exit.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -217,11 +257,9 @@ public class Game extends Application {
 			}
 		});
 
-		// Speed Button Handlers______________________
+		//*****Speed Button Handlers*****
 
 		speedButton.setOnAction(new EventHandler<ActionEvent>() {
-
-	//	menuButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -229,7 +267,8 @@ public class Game extends Application {
 				System.out.println(" Speed Button press");
 			}
 		});
-
+		
+		//Slow
 		slowSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -237,7 +276,8 @@ public class Game extends Application {
 				updateTimeline(speed);
 			}
 		});
-
+		
+		//Medium
 		medSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -245,7 +285,8 @@ public class Game extends Application {
 				updateTimeline(speed);
 			}
 		});
-
+		
+		//Fast
 		fastSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -253,7 +294,8 @@ public class Game extends Application {
 				updateTimeline(speed);
 			}
 		});
-
+		
+		//Fastest
 		fastestSpeed.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -262,8 +304,7 @@ public class Game extends Application {
 			}
 		});
 
-
-		// Shape Button Handlers______________________
+		//*****Shape Button Handlers*****
 
 		shapeButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -273,36 +314,41 @@ public class Game extends Application {
 				System.out.println("Speed Button press");
 			}
 		});
-
+		
+		//TestLine shape
 		shape1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				grids.addShape(Shape.testLine());
 			}
 		});
-
+		
+		//Glider shape
 		shape2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				grids.addShape(Shape.glider());
 			}
 		});
-
+		
+		//spaceShip shape
 		shape3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				grids.addShape(Shape.spaceShip());
 			}
 		});
-
+		
+		//Glider Gun shape
 		shape4.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				grids.addShape(Shape.gliderGun());
 			}
 		});
-		// _______________Colour Button Hnadler______
-
+		
+		// *****Colour Button Handlers*****
+		
 		colorButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -311,7 +357,8 @@ public class Game extends Application {
 				System.out.println("Colour Button  press");
 			}
 		});
-
+		
+		//Set to Blue 
 		color1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -319,7 +366,8 @@ public class Game extends Application {
 				System.out.println("Colour 1  selected");
 			}
 		});
-
+		
+		//Set to Green
 		color2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -327,7 +375,8 @@ public class Game extends Application {
 				System.out.println("Colour 2  selected");
 			}
 		});
-
+		
+		//Set to Pink
 		color3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -335,19 +384,24 @@ public class Game extends Application {
 				System.out.println("Colour 3 selected");
 			}
 		});
-
+		
+		//Colour Picker *NOT YET IMPLEMENTED CORRECTLY*
 		color4.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				grids.pickColor();
-				System.out.println("Colour 4 selected(eww Picky Basterd!)");
+				System.out.println("Colour Picker selected");
 			}
 		});
 
+		/***
+		 * This block controls the setup and layout of the game window in the stage.
+		 */
 		// stage > scene > VBox
 		// VBox contains GridPane for display the grid and HBox to display the
 		// control panel.
-		primaryStage.setTitle("Conway Game!!");
+		
+		primaryStage.setTitle("Conway Game!!");  
 		BorderPane root = new BorderPane();
 		Separator sep = new Separator();
 		HBox controlPanel = new HBox(10, shapeButton, randomFill, play, stop, clear, exit);
@@ -361,24 +415,33 @@ public class Game extends Application {
 		root.setCenter(grids);
 		root.setBottom(hboxHolder);
 		Scene scene = new Scene(root, 560, 700);
-		// add some condition to set the speed mode
-		// updateTimeline();
 		updateTimeline(this.speed);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		setCellEvent();
 
 	}
-
+	/***
+	 * Main method to launch the program at runtime
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/***
+	 * This method called by its associated button and event handlers
+	 * calls the clearAll() method which reinitialises the viewable grid to clear
+	 * with no live cells
+	 */
 	public void clearButton() {
 		grids.clearAll();
 	}
 
-	/**
+	/***
+	 * This method allows user to manually click on the viewable grid to populate with alive cells
+	 * 
 	 * method to set up the each cell's mouse action then when click the cell,
 	 * if the cell is dead, it will be alive. if the cell is alive, it will be
 	 * dead
@@ -387,6 +450,7 @@ public class Game extends Application {
 		for (Node cell : grids.getChildren()) {
 			Cell cellClicked = (Cell) cell;
 			cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				
 				@Override
 				public void handle(MouseEvent event) {
 					if (cellClicked.isAlive()) {
@@ -399,6 +463,7 @@ public class Game extends Application {
 		}
 	}
 
+	//Leaving this at the bottom of Game class for possible refactoring
 	/**
 	 * This ButtonColorHandler's event handler act on every button by changing
 	 * different colors
