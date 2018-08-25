@@ -2,10 +2,13 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+
 import org.junit.Test;
 
 import conwaygame.Cell;
 import conwaygame.Grid;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public class GridTest {
 
@@ -90,13 +93,36 @@ public class GridTest {
 	 * 
 	 */
 	public void testClearAll() {
-		
+		gridPane.initialFill();
+		gridPane.randomFill();
+		gridPane.clearAll();
+		int n = 0;
+		for(Cell[] cellCol: gridPane.getCells()) {
+			for(Cell cell: cellCol) {
+				if(cell.isAlive()) {
+					n++;
+				}
+			}
+		}
+		// make sure when randomFill the grid, the number of alive cell will be larger than 0
+		assertEquals(n==0, true);
 	}
 	@Test
 	/**
 	 * 
 	 */
-	public void testSetAllPing() {
-		
+	public void testSetAllPink() {
+		gridPane.initialFill();
+		gridPane.setAllPink();
+		gridPane.randomFill();
+		Color color = Color.BLACK;
+		for(Cell[] cellCol: gridPane.getCells()) {
+			for(Cell cell: cellCol) {
+				if(cell.isAlive()) {
+					color = (Color) cell.getFill();
+				}
+			}
+		}
+		assertEquals(color, Color.PINK);
 	}
 }
